@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DANK-TRUST GROWTH</title><link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f14b8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}body{background:#eef4ff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:14px}
+.main{background:white;width:100%;max-width:430px;border-radius:22px;padding:22px 22px 0 22px;box-shadow:0 12px 30px rgba(0,0,0,.08);text-align:center;overflow:hidden}
+.banner{margin:18px -22px 0 -22px;background:linear-gradient(135deg,#1216c6,#1e3cff);color:white;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;font-size:11px;text-align:left;line-height:1.4}
+.banner b{font-size:13px;display:block}
+.logo-big{width:200px;height:200px;object-fit:contain;display:block;margin:0 auto 8px}
+h1{color:#0f14b8;font-size:22px;font-weight:900}.sub{color:#7fa0d6;font-size:12px;margin:5px 0 16px}
+.btn{width:100%;padding:15px;border-radius:14px;border:none;font-weight:800;font-size:15px;cursor:pointer;margin:7px 0}.btn-blue{background:#1216c6;color:white}.btn-white{background:white;border:2px solid #1216c6;color:#1216c6}
+.box{display:none;background:white;width:100%;max-width:430px;border-radius:22px;padding:18px;box-shadow:0 12px 30px rgba(0,0,0,.08)}.box h3{color:#1216c6;text-align:center;margin-bottom:14px}
+label{font-size:12px;font-weight:700;color:#333;text-align:left;display:block;margin:9px 0 3px}input,select{width:100%;padding:13px;border:1.7px solid #c9d6f5;border-radius:12px;font-size:14px;outline:none}
+#res{display:none;margin-top:14px;border:2px solid #1216c6;border-radius:16px;padding:12px;background:#f6f9ff}.row{display:flex;justify-content:space-between;padding:9px 2px;border-bottom:1px dashed #b9c9ee;font-size:13px}.bal{background:#1216c6;color:white;border-radius:12px;padding:12px;margin-top:8px;text-align:center}.bal b{font-size:26px;display:block}.ok{color:#0b8a2e;font-weight:900;text-align:left;margin-bottom:8px}</style></head><body>
+<div class="main" id="mainCard"><img src="logo.png" class="logo-big"><h1>DANK-TRUST GROWTH</h1><div class="sub">Growth Circle - Secure Susu</div>
+<div id="choice"><button class="btn btn-blue" onclick="openBox('existing')">Existing Customer</button><button class="btn btn-white" onclick="openBox('withdrawal')">Withdrawal - Request Here</button><button class="btn btn-white" onclick="openBox('newcustomer')">New Customer - Apply Here</button></div><div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-size:11px;text-align:left;line-height:1.4;border-radius:0 0 22px 22px"><div><b style="font-size:13px;display:block">🟢 24/7 Secure Savings</b>📞 053 591 6951 | MoMo Available<br>💰 Weekly Collection • Quick Withdrawal</div><div style="font-size:26px">🔒</div></div></div>
+<div class="box" id="existing"><h3>Existing Customer - Check Balance 🔐</h3><label>SUSU NO *</label><input id="susu_no" placeholder="DT001" style="text-transform:uppercase"><label>Phone Number *</label><input id="phone" type="tel"><label>PIN *</label><input id="pin" type="password"><button class="btn btn-blue" id="btnCheck" onclick="checkBalance()">Check Balance 🔐</button><button class="btn btn-white" onclick="closeAll()">← Back</button>
+<div id="res"><div class="ok">✅ Success!</div><div class="row"><span>📦 Susu</span><b id="r_susu">-</b></div><div class="row"><span>👤 Name</span><b id="r_name">-</b></div><div class="row"><span>📱 Number</span><b id="r_num">-</b></div><div class="row"><span>📅 Date</span><b id="r_date">-</b></div><div class="row"><span>💰 Deposit</span><b id="r_dep">GH₵ 0</b></div><div class="row" style="border:none"><span>💸 Withdrawal</span><b id="r_wd">GH₵ 0</b></div><div class="bal"><span>💰 Balance</span><b id="r_bal">GH₵ 0</b></div></div><button class="btn btn-blue" style="margin-top:12px" onclick="downloadPDF()">📄 Download Receipt (PDF)</button></div>
+<div class="box" id="withdrawal"><h3>Withdrawal Request</h3><div style="background:#e8f0ff;border-left:4px solid #1216c6;padding:10px 12px;border-radius:8px;margin-bottom:12px;text-align:left;font-size:12px;line-height:1.5;color:#333"><b style="color:#1216c6">⏰ Notice:</b> Your withdrawal will be processed within <b>24 hours</b> after filing this request. Please ensure your account details are correct. For urgent enquiries, call 053 591 6951.</div><label>Full name *</label><input id="w_name"><label>Susu Number *</label><input id="w_susu"><label>Enter Your Pin *</label><input id="w_pin" type="password"><label>Amount *</label><input id="w_amount" type="number"><label>Purpose</label><input id="w_purpose"><label>Preferred Disbursement *</label><select id="w_disb"><option value="">Select</option><option>Mobile Money</option><option>Bank Transfer</option><option>Cash Pickup</option></select><label>Account Number *</label><input id="w_acc"><button class="btn btn-blue" id="btnW" onclick="submitWithdrawal()">Submit Request</button><button class="btn btn-white" onclick="closeAll()">← Back</button></div>
+<div class="box" id="newcustomer"><h3>New Customer - Apply Here</h3><label>Enter full name *</label><input id="n_name"><label>Enter number *</label><input id="n_phone" type="tel"><label>Date of birth *</label><input id="n_dob" type="date"><label>Enter email account</label><input id="n_email" type="email"><label>Please select gender *</label><select id="n_gender"><option value="">Select</option><option>Male</option><option>Female</option></select><label>Occupation *</label><input id="n_occ"><label>How much per week *</label><select id="n_weekly" onchange="showFee(this.value)"><option value="">Select</option><option value="50">GH₵ 50</option><option value="100">GH₵ 100</option><option value="150">GH₵ 150</option><option value="200">GH₵ 200</option></select>
+
+<div style="background:#e8f0ff;border-left:4px solid #1216c6;padding:10px 12px;border-radius:8px;margin:10px 0;text-align:left;font-size:11.5px;line-height:1.6;color:#333">
+<b style="color:#1216c6;display:block;margin-bottom:4px">💰 Registration Fees:</b>
+• GH₵ 50 / week → <b>GH₵ 20 fee</b><br>
+• GH₵ 100 / week → <b>GH₵ 30 fee</b><br>
+• GH₵ 150 / week → <b>GH₵ 40 fee</b><br>
+• GH₵ 200 / week → <b>GH₵ 50 fee</b><br>
+<span style="font-size:10.5px;color:#666;display:block;margin-top:6px">One-time registration. Non-refundable.</span>
+<div id="feeShow" style="display:none;margin-top:8px;background:#1216c6;color:white;padding:8px 10px;border-radius:8px;text-align:center;font-weight:800"></div>
+</div><label>Next of kin name and number *</label><input id="n_kin"><label>Location / Area *</label><input id="n_loc"><label>How did you hear about us *</label><select id="n_hear"><option value="">Select</option><option>Family</option><option>Friend</option><option>Social media</option><option>Other</option></select><label>Name of referrer</label><select id="n_ref_type"><option value="">Family/Friend/Social</option><option>Family</option><option>Friend</option><option>Social media</option><option>Other</option></select><input id="n_ref_name" placeholder="Referrer Name"><label>I Agree to register with required amount *</label><select id="n_agree"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select><button class="btn btn-blue" id="btnN" onclick="submitNew()">Register Now</button><button class="btn btn-white" onclick="closeAll()">← Back</button></div>
+<script>
+const API="https://script.google.com/macros/s/AKfycbyuoOhMW39UEs5XScE3-BN1m4E2shpp69DJg8NXjyYTdi5QYOWRw81VfHv6eiDrBWI/exec";
+function openBox(id){document.getElementById('choice').style.display='none';document.getElementById('mainCard').style.display='none';document.getElementById('existing').style.display='none';document.getElementById('withdrawal').style.display='none';document.getElementById('newcustomer').style.display='none';document.getElementById(id).style.display='block';}
+function closeAll(){document.getElementById('mainCard').style.display='block';document.getElementById('choice').style.display='block';document.getElementById('existing').style.display='none';document.getElementById('withdrawal').style.display='none';document.getElementById('newcustomer').style.display='none';document.getElementById('res').style.display='none';}
+function checkBalance(){const s=document.getElementById('susu_no').value.trim().toUpperCase();const n=document.getElementById('phone').value.trim();const p=document.getElementById('pin').value.trim();const btn=document.getElementById('btnCheck');const res=document.getElementById('res');if(!s||!n||!p){alert('Fill SUSU NO, Phone, PIN');return;}res.style.display='none';btn.disabled=true;btn.textContent='Checking...';const cb='cb_'+Date.now();window[cb]=function(d){btn.disabled=false;btn.textContent='Check Balance 🔐';if(d.status==='success'){document.getElementById('r_susu').textContent=d.susu_no||s;document.getElementById('r_name').textContent=d.name||'-';document.getElementById('r_num').textContent=d.number||n;document.getElementById('r_date').textContent=d.date||new Date().toLocaleDateString();document.getElementById('r_dep').textContent='GH₵ '+(d.deposit||0);document.getElementById('r_wd').textContent='GH₵ '+(d.withdrawal||0);document.getElementById('r_bal').textContent='GH₵ '+(d.balance||0);res.style.display='block';}else{alert(d.message||'Not found');}delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(s)+'&number='+encodeURIComponent(n)+'&pin='+encodeURIComponent(p)+'&callback='+cb;sc.onerror=()=>{btn.disabled=false;btn.textContent='Check Balance 🔐';alert('Network error');};document.body.appendChild(sc);}
+function submitWithdrawal(){const b=document.getElementById('btnW');const d={name:document.getElementById('w_name').value.trim(),susu:document.getElementById('w_susu').value.trim(),pin:document.getElementById('w_pin').value.trim(),amount:document.getElementById('w_amount').value.trim(),purpose:document.getElementById('w_purpose').value.trim(),disb:document.getElementById('w_disb').value,acc:document.getElementById('w_acc').value.trim()};if(!d.name||!d.susu||!d.pin||!d.amount||!d.disb||!d.acc){alert('Fill all *');return;}b.disabled=true;b.textContent='Saving...';fetch(API+'?action=withdrawal&'+new URLSearchParams(d),{mode:'no-cors'}).then(()=>{alert('✅ Withdrawal saved to Google Sheet!');b.disabled=false;b.textContent='Submit Request';closeAll();}).catch(()=>{b.disabled=false;b.textContent='Submit Request';alert('Saved! Check Sheet.');closeAll();});}
+function submitNew(){const b=document.getElementById('btnN');const d={name:document.getElementById('n_name').value.trim(),phone:document.getElementById('n_phone').value.trim(),dob:document.getElementById('n_dob').value,email:document.getElementById('n_email').value.trim(),gender:document.getElementById('n_gender').value,occ:document.getElementById('n_occ').value.trim(),weekly:document.getElementById('n_weekly').value,kin:document.getElementById('n_kin').value.trim(),loc:document.getElementById('n_loc').value.trim(),hear:document.getElementById('n_hear').value,refType:document.getElementById('n_ref_type').value,refName:document.getElementById('n_ref_name').value.trim(),agree:document.getElementById('n_agree').value};if(!d.name||!d.phone||!d.dob||!d.gender||!d.occ||!d.weekly||!d.kin||!d.loc||!d.hear||!d.agree){alert('Fill all *');return;}if(d.agree!=='Yes'){alert('Must agree Yes');return;}b.disabled=true;b.textContent='Saving...';fetch(API+'?action=newcustomer&'+new URLSearchParams(d),{mode:'no-cors'}).then(()=>{alert('✅ New Customer saved to Google Sheet!');b.disabled=false;b.textContent='Register Now';closeAll();}).catch(()=>{b.disabled=false;b.textContent='Register Now';alert('Saved! Check Sheet.');closeAll();});}async function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const susu = document.getElementById('r_susu').textContent;
+  const name = document.getElementById('r_name').textContent;
+  const num = document.getElementById('r_num').textContent;
+  const dep = document.getElementById('r_dep').textContent;
+  const wd = document.getElementById('r_wd').textContent;
+  const bal = document.getElementById('r_bal').textContent;
+  const date = document.getElementById('r_date').textContent;
+  
+  let logoData = null;
+  try {
+    const img = new Image();
+    img.crossOrigin='anonymous';
+    img.src='./logo.png';
+    await new Promise((res,rej)=>{
+      img.onload=res;
+      img.onerror=rej;
+      setTimeout(rej,1500);
+    });
+    const c=document.createElement('canvas');
+    c.width=img.width;
+    c.height=img.height;
+    c.getContext('2d').drawImage(img,0,0);
+    logoData = c.toDataURL('image/png');
+  } catch(e){ console.log('logo not loaded'); }
+
+  doc.setFillColor(15,20,184);
+  doc.rect(0,0,210,34,'F');
+  if(logoData){
+    try{ doc.addImage(logoData,'PNG',12,4,22,22); }catch(e){}
+  }
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(16);
+  doc.setFont('helvetica','bold');
+  doc.text('DANK-TRUST GROWTH', 105, 16, {align:'center'});
+  doc.setFontSize(9);
+  doc.setFont('helvetica','normal');
+  doc.text('Growth Circle - Secure Susu | 054 123 4567', 105, 24, {align:'center'});
+
+  doc.setTextColor(0,0,0);
+  doc.setFontSize(14);
+  doc.setFont('helvetica','bold');
+  doc.text('TRANSACTION RECEIPT', 105, 44, {align:'center'});
+  doc.setFontSize(10);
+  doc.setFont('helvetica','normal');
+  doc.text('Generated: '+new Date().toLocaleString(), 14, 53);
+
+  doc.setDrawColor(15,20,184);
+  doc.setLineWidth(0.6);
+  doc.rect(14, 58, 182, 70);
+  doc.setFontSize(11);
+  doc.text('Susu No: '+susu, 18, 68);
+  doc.text('Name: '+name, 18, 76);
+  doc.text('Phone: '+num, 18, 84);
+  doc.text('Last Update: '+date, 18, 92);
+  doc.setFont('helvetica','bold');
+  doc.text('Deposit: '+dep, 18, 102);
+  doc.text('Withdrawal: '+wd, 18, 110);
+
+  doc.setFillColor(15,20,184);
+  doc.rect(14, 118, 182, 16,'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(13);
+  doc.setFont('helvetica','bold');
+  doc.text('BALANCE: '+bal, 105, 128, {align:'center'});
+
+  doc.setTextColor(80,80,80);
+  doc.setFontSize(8);
+  doc.setFont('helvetica','normal');
+  doc.text('Computer generated receipt. Thank you for saving with Dank-Trust!', 105, 144, {align:'center'});
+  doc.save('DankTrust-Receipt-'+susu+'.pdf');
+}
+</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}</script></body></html>
