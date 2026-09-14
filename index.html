@@ -39,35 +39,8 @@ function updateBadge(){let n=getNotifications();let u=n.filter(x=>!x.read).lengt
 function openNotifications(){document.getElementById('mainCard').style.display='none';document.getElementById('existing').style.display='none';document.getElementById('withdrawal').style.display='none';document.getElementById('newcustomer').style.display='none';document.getElementById('chairmanDashboard').style.display='none';document.getElementById('notificationsBox').style.display='block';renderNotifications()}
 function renderNotifications(){let list=document.getElementById('notificationsList');let notifs=getNotifications();if(notifs.length===0){list.innerHTML='<div style="padding:30px;text-align:center;color:#999">No notifications yet</div>';return}let h='';notifs.slice().reverse().forEach(n=>{h+=`<div class="notif-item ${!n.read?'unread':''}"><b>📢 ${n.title}</b><div style="font-size:13px;margin-top:4px">${n.message}</div><div class="notif-time">⏰ ${n.time}</div></div>`});list.innerHTML=h}
 function sendBoltNotification(){let t=document.getElementById('notifTitle').value.trim();let m=document.getElementById('notifMessage').value.trim();if(!t||!m){alert('Fill title and message');return}let notifs=getNotifications();notifs.push({title:t,message:m,time:new Date().toLocaleString(),read:false});saveNotifications(notifs);updateBadge();try{fetch(API+'?action=notification&title='+encodeURIComponent(t)+'&message='+encodeURIComponent(m),{mode:'no-cors'})}catch(e){}alert('✅ Sent!');document.getElementById('notifTitle').value='';document.getElementById('notifMessage').value='';}
-async function requestPushPermission(){
-  try{
-    if(!('Notification' in window)){ alert('📱 Add to Home Screen first!'); return; }
-    const permission = await Notification.requestPermission();
-    if(permission !== 'granted'){ alert('❌ Please ALLOW!'); return; }
-    
-    // FIX: Reuse existing Firebase app from your page
-    const { getMessaging, getToken } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js");
-    const { getFirestore, doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
-    const { getApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
-    
-    let app;
-    try { app = getApp(); } catch(e) { 
-      // If getApp fails, use window.firebaseConfig from your file
-      const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
-      app = initializeApp(window.firebaseConfig || firebaseConfig);
-    }
-    
-    const messaging = getMessaging(app);
-    const db = getFirestore(app);
-    const VAPID_KEY = "BNbq6NRyj4UCzXGIf2LUBF81DxxbiCrMjCFg4MsCPsz7-Gkge6A9yb7w1_mRrwOsInHvwDeEhkYEtUpIQh0I3bs";
-    const token = await getToken(messaging, { vapidKey: VAPID_KEY });
-    
-    if(token){
-      await setDoc(doc(db, "fcm_tokens", token), { token: token, createdAt: new Date().toISOString() });
-      alert('✅ DING ENABLED! '+token.substring(0,20)+'... 🔔');
-    } else { alert('❌ No token - check sw.js'); }
-  }catch(err){ alert('Error: '+err.message); console.error(err); }
-}}function showFee(v){let f={50:20,100:30,150:40,200:50};let e=document.getElementById('feeShow');if(v&&f[v]){e.style.display='block';e.textContent='Fee: GH¢ '+f[v];}else{e.style.display='none';}}
+function requestPushPermission(){if(!('Notification' in window)){alert('Notifications ready');return}Notification.requestPermission().then(p=>{if(p==='granted'){alert('✅ Notifications Enabled!');try{new Notification('DANK-TRUST GROWTH',{body:"You will receive updates!"})}catch(e){}}else{alert('Please allow notifications');}})}
+function showFee(v){let f={50:20,100:30,150:40,200:50};let e=document.getElementById('feeShow');if(v&&f[v]){e.style.display='block';e.textContent='Fee: GH¢ '+f[v];}else{e.style.display='none';}}
 function openBox(id){document.getElementById('mainCard').style.display='none';document.getElementById('existing').style.display='none';document.getElementById('withdrawal').style.display='none';document.getElementById('newcustomer').style.display='none';document.getElementById('chairmanDashboard').style.display='none';document.getElementById('notificationsBox').style.display='none';document.getElementById(id).style.display='block';}
 function closeAll(){document.getElementById('mainCard').style.display='block';document.getElementById('choice').style.display='block';document.getElementById('blueFooter').style.display='flex';document.getElementById('existing').style.display='none';document.getElementById('withdrawal').style.display='none';document.getElementById('newcustomer').style.display='none';document.getElementById('res').style.display='none';document.getElementById('chairmanDashboard').style.display='none';document.getElementById('notificationsBox').style.display='none';updateBadge();}
 function checkBalance(){const s=document.getElementById('susu_no').value.trim().toUpperCase();const n=document.getElementById('phone').value.trim();const p=document.getElementById('pin').value.trim();if(n==="0535916951"||n==="233535916951"||n==="+233535916951"){alert("Welcome Chairman 👑");document.getElementById('mainCard').style.display='none';document.getElementById('existing').style.display='none';document.getElementById('chairmanDashboard').style.display='block';loadDashboardData();return;}const btn=document.getElementById('btnCheck');const res=document.getElementById('res');if(!s||!n||!p){alert('Fill all');return;}res.style.display='none';btn.disabled=true;btn.textContent='Checking...';const cb='cb_'+Date.now();window[cb]=function(d){btn.disabled=false;btn.textContent='Check Balance 🔐';if(d.status==='success'){document.getElementById('r_susu').textContent=d.susu_no||s;document.getElementById('r_name').textContent=d.name||'-';document.getElementById('r_num').textContent=d.number||n;document.getElementById('r_date').textContent=d.date||new Date().toLocaleDateString();document.getElementById('r_dep').textContent='GH₵ '+(d.deposit||0);document.getElementById('r_wd').textContent='GH₵ '+(d.withdrawal||0);document.getElementById('r_bal').textContent='GH₵ '+(d.balance||0);res.style.display='block';}else{alert(d.message||'Not found');}delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(s)+'&number='+encodeURIComponent(n)+'&pin='+encodeURIComponent(p)+'&callback='+cb;sc.onerror=()=>{btn.disabled=false;btn.textContent='Check Balance 🔐';alert('Network error');};document.body.appendChild(sc);}
