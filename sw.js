@@ -1,4 +1,4 @@
-const CACHE_NAME = "danktrust-v2"; // Changed v1 to v6 - forces update!
+const CACHE_NAME = "danktrust-v2"; // Changed v1 to v7 - forces update!
 const urlsToCache = [
   "./",
   "./index.html",
