@@ -4,8 +4,10 @@
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
-      appId: "854a8a7a-01b1-4453-9d1f-c6864ff5e9f3",
-    });
+  appId: "854a8a7a-01b1-4453-9d1f-c6864ff5e9f3",
+  notifyButton: { enable: true },
+});
+OneSignal.Slidedown.promptPush();
   });
 </script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DANK-TRUST GROWTH</title><link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
