@@ -1,77 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DANK-TRUST GROWTH</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
       appId: "854a8a7a-01b1-4453-9d1f-c6864ff5e9f3",
-      serviceWorkerPath: "/DankTrust-Growth-Circle/OneSignalSDKWorker.js",
-      serviceWorkerParam: { scope: "/DankTrust-Growth-Circle/" },
     });
-    console.log("OneSignal Ready ✅");
   });
 </script>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DANK-TRUST GROWTH</title>
-<link rel="manifest" href="./manifest.json">
-<link rel="apple-touch-icon" href="./apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
-<meta name="theme-color" content="#1216c6">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="DankTrust">
-<meta name="mobile-web-app-capable" content="yes"><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}body{background:white;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:14px}.main{background:white;width:100%;max-width:380px;border:3px solid #1216c6;border-radius:22px;padding:22px 22px 0 22px;box-shadow:0 12px 30px rgba(0,0,0,.08);text-align:center;overflow:hidden;position:relative}.logo-big{width:230px;height:230px;object-fit:contain;display:block;margin:0 auto 10px}h1{color:#0f14b8;font-size:18px;font-weight:900;white-space:nowrap;}.sub{color:#7fa0d6;font-size:13px;margin:5px 0 16px}.btn{width:100%;padding:15px;border-radius:14px;border:none;font-weight:800;font-size:15px;cursor:pointer;margin:7px 0}.btn-blue{background:#1216c6;color:white}.btn-white{background:white;border:2px solid #1216c6;color:#1216c6}.box{display:none;background:white;width:100%;max-width:430px;border-radius:22px;padding:18px;box-shadow:0 12px 30px rgba(0,0,0,.08)}.box h3{color:#1216c6;text-align:center;margin-bottom:14px}label{font-size:12px;font-weight:700;color:#333;text-align:left;display:block;margin:9px 0 3px}input,select,textarea{width:100%;padding:13px;border:1.7px solid #c9d6f5;border-radius:12px;font-size:14px;outline:none}textarea{resize:none}#res{display:none;margin-top:14px;border:2px solid #1216c6;border-radius:16px;padding:12px;background:#f6f9ff}.row{display:flex;justify-content:space-between;padding:9px 2px;border-bottom:1px dashed #b9c9ee;font-size:13px}.bal{background:#1216c6;color:white;border-radius:12px;padding:12px;margin-top:8px;text-align:center}.bal b{font-size:26px;display:block}.ok{color:#0b8a2e;font-weight:900;text-align:left;margin-bottom:8px}
-.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.bell{position:relative;background:#eef4ff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:2px solid #c9d6f5}.badge{position:absolute;top:-4px;right:-4px;background:red;color:white;font-size:11px;font-weight:900;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid white}.notif-item{padding:12px;border-bottom:1px solid #eef4ff;text-align:left}.notif-item.unread{background:#f6f9ff;border-left:4px solid #1216c6}.notif-time{font-size:10px;color:#888;margin-top:4px}
-.desc-box{background:#f0f4ff;border-left:4px solid #1216c6;padding:12px 12px;border-radius:8px;font-size:12.5px;color:#333;text-align:left;line-height:1.6;margin-bottom:14px}
-</style></head><body>
-<div class="main" id="mainCard">
-<div class="top-bar"><div style="width:44px"></div><div style="flex:1"><img src="logo.png" class="logo-big"><h1>DANK-TRUST GROWTH</h1><div class="sub">Growth Circle - Secure Susu</div></div>
-<div class="bell" onclick="openNotifications()">🔔<div class="badge" id="notifBadge" style="display:none">0</div></div>
-</div>
-<div id="choice"><button class="btn btn-blue" onclick="openBox('existing')">Existing Customer - Check Balance</button><button class="btn btn-white" onclick="openBox('withdrawal')">Withdrawal - Request Here</button><button class="btn btn-white" onclick="openBox('newcustomer')">New Customer - Apply Here</button><button class="btn btn-white" style="font-size:12px" onclick="requestPushPermission()">🔔 Enable Notifications</button></div>
-<div id="blueFooter" style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-size:11px;text-align:left;line-height:1.4;border-radius:0 0 22px 22px"><div><b style="font-size:13px;display:block">🟢 24/7 Secure Savings</b>📞 053 591 6951 | MoMo Available<br>💰 Weekly Collection • Quick Withdrawal</div><div style="font-size:26px">🔒</div></div>
-</div>
-<div class="box" id="notificationsBox"><h3>🔔 Notifications</h3><div id="notificationsList"></div><button class="btn btn-white" onclick="closeAll()">← Back</button></div>
-<div class="box" id="existing"><h3>Existing Customer 🔐</h3><label>SUSU NO *</label><input id="susu_no" placeholder="DT001" style="text-transform:uppercase"><label>Phone Number *</label><input id="phone" type="tel" placeholder="0275631526"><label>PIN *</label><input id="pin" type="password"><button class="btn btn-blue" id="btnCheck" onclick="checkBalance()">Check Balance 🔐</button><button class="btn btn-white" onclick="closeAll()">← Back</button><div id="res"><div class="ok">✅ Success!</div><div class="row"><span>📦 Susu</span><b id="r_susu">-</b></div><div class="row"><span>👤 Name</span><b id="r_name">-</b></div><div class="row"><span>📱 Number</span><b id="r_num">-</b></div><div class="row"><span>📅 Date</span><b id="r_date">-</b></div><div class="row"><span>💰 Deposit</span><b id="r_dep">GH₵ 0</b></div><div class="row" style="border:none"><span>💸 Withdrawal</span><b id="r_wd">GH₵ 0</b></div><div class="bal"><span>💰 Balance</span><b id="r_bal">GH₵ 0</b></div></div><button class="btn btn-blue" style="margin-top:12px" onclick="downloadPDF()">📄 Download Receipt</button></div>
-<div class="box" id="withdrawal"><h3>Withdrawal Request</h3><div class="desc-box">💸 <b>Withdrawal Description:</b> Request money from your Susu savings. Enter your correct Susu Number and PIN, choose how you want to receive the money (Mobile Money, Bank Transfer or Cash Pickup). Your request goes directly to Chairman for approval. <b>Withdrawals are processed within 24 hours.</b></div><label>Full name *</label><input id="w_name"><label>Susu Number *</label><input id="w_susu"><label>PIN *</label><input id="w_pin" type="password"><label>Amount *</label><input id="w_amount" type="number"><label>Purpose</label><input id="w_purpose"><label>Preferred Disbursement *</label><select id="w_disb"><option value="">Select</option><option>Mobile Money</option><option>Bank Transfer</option><option>Cash Pickup</option></select><label>Account Number *</label><input id="w_acc"><button class="btn btn-blue" id="btnW" onclick="submitWithdrawal()">Submit Request</button><button class="btn btn-white" onclick="closeAll()">← Back</button></div>
-<div class="box" id="newcustomer"><h3>New Customer - Apply</h3><div class="desc-box">👤 <b>New Customer Description:</b> Join DANK-TRUST GROWTH today! Fill this form to become a member. Your weekly contribution builds your savings. <b>Registration for the amount to be saved:</b> Choose your weekly savings plan - <b>GH₵ 50, GH₵ 100, GH₵ 150 or GH₵ 200</b>. Registration fee: GH₵ 50 plan = GH₵ 20, GH₵ 100 = GH₵ 30, GH₵ 150 = GH₵ 40, GH₵ 200 = GH₵ 50. You will get Susu Number and PIN via SMS after registration.</div><label>Full name *</label><input id="n_name"><label>Phone *</label><input id="n_phone" type="tel"><label>Date of birth *</label><input id="n_dob" type="date"><label>Email</label><input id="n_email" type="email"><label>Gender *</label><select id="n_gender"><option value="">Select</option><option>Male</option><option>Female</option></select><label>Occupation *</label><input id="n_occ"><label>How much per week *</label><select id="n_weekly" onchange="showFee(this.value)"><option value="">Select</option><option value="50">GH₵ 50</option><option value="100">GH₵ 100</option><option value="150">GH₵ 150</option><option value="200">GH₵ 200</option></select><div id="feeShow" style="display:none;margin-top:8px;background:#1216c6;color:white;padding:8px 10px;border-radius:8px;text-align:center;font-weight:800"></div><label>Next of kin *</label><input id="n_kin"><label>Location *</label><input id="n_loc"><label>How did you hear about us *</label><select id="n_hear"><option value="">Select</option><option>Family</option><option>Friend</option><option>Social media</option><option>Other</option></select><label>Referrer Name</label><input id="n_ref_name"><label>Agree? *</label><select id="n_agree"><option value="">Select</option><option value="Yes">Yes</option><option value="No">No</option></select><button class="btn btn-blue" id="btnN" onclick="submitNew()">Register Now</button><button class="btn btn-white" onclick="closeAll()">← Back</button></div>
-<div id="chairmanDashboard" style="display:none; width:100%; max-width:430px; padding:15px; background:#f0fff0; border:2px solid green; border-radius:15px; margin:15px auto;"><h2 style="color:green; text-align:center; font-size:18px;">👑 Chairman Dashboard - LIVE</h2><button class="btn btn-white" style="padding:8px; font-size:12px; margin:10px 0;" onclick="closeAll()">← Back to Home</button>
-<div style="background:white;padding:12px;border-radius:12px;margin:15px 0;border:2px dashed #1216c6"><h3 style="font-size:14px;color:#1216c6;margin-bottom:8px">📢 Send Notification to All</h3><label>Title *</label><input id="notifTitle" placeholder="Collection Tomorrow"><label>Message *</label><textarea id="notifMessage" rows="3" placeholder="Dear members..."></textarea><button class="btn btn-blue" onclick="sendBoltNotification()" style="margin-top:10px">🚀 Send Now</button></div>
-<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;"><div style="background:white; padding:15px; border-radius:10px; text-align:center;"><h3 id="totalMembersCount" style="font-size:22px;">0</h3><p style="font-size:12px;">Total Members</p></div><div style="background:white; padding:15px; border-radius:10px; text-align:center;"><h3 id="totalMoneyCount" style="font-size:16px;">GH¢ 0</h3><p style="font-size:12px;">Total Collected</p></div><div style="background:white; padding:15px; border-radius:10px; text-align:center;"><h3 id="todayDepositsCount" style="font-size:16px;">GH¢ 0</h3><p style="font-size:12px;">Today's Deposits</p></div><div style="background:white; padding:15px; border-radius:10px; text-align:center;"><h3 id="pendingPayoutsCount" style="font-size:22px;">0</h3><p style="font-size:12px;">Pending Payouts</p></div></div><h3 style="margin-top:20px; font-size:15px;">📋 Recent Members</h3><div id="recentTransactionsList" style="background:white; padding:10px; border-radius:10px; max-height:300px; overflow-y:auto; margin-top:8px; font-size:13px;"><p>Loading...</p></div></div>
-<script>
-const API="https://script.google.com/macros/s/AKfycbzvJMKGS8TBgEc48irgBRV5WtqlS494EOR3rWtPqu20_hdL3xawiFq-Gfle1ZnuCv0/exec";
-function getNotifications(){try{return JSON.parse(localStorage.getItem("danktrust_notifications")||"[]")}catch(e){return []}}
-function saveNotifications(a){localStorage.setItem("danktrust_notifications",JSON.stringify(a))}
-function updateBadge(){let n=getNotifications();let u=n.filter(x=>!x.read).length;let b=document.getElementById('notifBadge');if(!b)return;if(u>0){b.style.display='flex';b.textContent=u>9?'9+':u}else{b.style.display='none'}}
-function openNotifications(){document.getElementById('mainCard').style.display='none';document.getElementById('existing').style.display='none';document.getElementById('withdrawal').style.display='none';document.getElementById('newcustomer').style.display='none';document.getElementById('chairmanDashboard').style.display='none';document.getElementById('notificationsBox').style.display='block';renderNotifications()}
-function renderNotifications(){let list=document.getElementById('notificationsList');let notifs=getNotifications();if(notifs.length===0){list.innerHTML='<div style="padding:30px;text-align:center;color:#999">No notifications yet</div>';return}let h='';notifs.slice().reverse().forEach(n=>{h+=`<div class="notif-item ${!n.read?'unread':''}"><b>📢 ${n.title}</b><div style="font-size:13px;margin-top:4px">${n.message}</div><div class="notif-time">⏰ ${n.time}</div></div>`});list.innerHTML=h}
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}body{background:white;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:14px}
+.btn{width:100%;padding:15px;border-radius:14px;border:none;font-weight:800;font-size:15px;cursor:pointer;margin:7px 0}.btn-blue{background:#1216c6;color:white}.btn-white{background:white;border:2px solid #1216c6;color:#1216c6}
+label{font-size:11px;font-weight:700;color:#1216c6;text-align:left;display:block;margin:10px 0 3px;text-transform:uppercase}input,select,textarea{width:100%;padding:12px;border:1.7px solid #c9d6f5;border-radius:12px;font-size:13px;outline:none}
+#registerFirstScreen,#loginFirstScreen{width:100%;max-width:380px;background:white;border:3px solid #1216c6;border-radius:22px;padding:18px 22px 0 22px;box-shadow:0 12px 30px rgba(0,0,0,.08);text-align:center;min-height:88vh;display:none;flex-direction:column}
+.welcome-big{font-family:'Poppins',sans-serif;font-size:52px;font-weight:900;color:#1216c6;letter-spacing:5px;display:block;line-height:0.9}.welcome-small{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:white;background:#1216c6;padding:6px 28px;border-radius:20px;display:inline-block;margin-top:10px}
+.logo-big{width:300px;height:300px;object-fit:contain;display:block;margin:0 auto}
+.main{width:100%;max-width:380px;background:white;border:3px solid #1216c6;border-radius:22px;padding:0;display:none;flex-direction:column;min-height:88vh}
+.fee-box{display:none;background:#1216c6;color:white;padding:12px;border-radius:10px;margin-top:8px;font-size:11px;font-weight:700;text-align:center}
+.desc-box{background:#f0f4ff;border-left:4px solid #1216c6;padding:12px;border-radius:8px;font-size:11px;color:#333;text-align:left;margin-bottom:10px}
+.daily-box{background:#e8fff0;border-left:4px solid #00a650;padding:10px;border-radius:8px;font-size:11px;color:#0a5a2e;text-align:left;margin-bottom:10px}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1.5px solid #e6ecff}
+.top-name{font-size:12px;font-weight:800;color:#1216c6;max-width:65%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-logout,.top-exit{font-size:9px;font-weight:800;color:#1216c6;border:1.2px solid #1216c6;border-radius:14px;padding:4px 10px;background:white;cursor:pointer}
+.box{width:100%;max-width:380px;background:white;border:2px solid #1216c6;border-radius:18px;padding:16px;margin-top:10px;display:none}
+</style>
+</head>
+<body>
 
-// ✅ FIXED - Enable Push Notifications
-function requestPushPermission(){
-  window.OneSignalDeferred.push(async function(OneSignal){
-    try{
-      await OneSignal.User.PushSubscription.optIn();
-      let id = OneSignal.User.PushSubscription.id;
-      console.log("Subscribed! ID:", id);
-      alert('✅ SUCCESS! You are now subscribed! ID: ' + id + '\nCheck OneSignal Dashboard > Audience > Users');
-    } catch(e){
-      console.log(e);
-      alert('⚠️ Please click ALLOW on the browser popup at top of screen!');
-      await OneSignal.Slidedown.promptPush();
-    }
-  });
+<div id="registerFirstScreen" style="display:flex">
+  <div style="flex:0"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1><div style="color:#7fa0d6;font-size:12px">Growth Circle - Secure Susu</div></div>
+  <div id="regStep1" style="margin:20px 0 10px;flex:1;display:flex;flex-direction:column;justify-content:center"><button class="btn btn-blue" onclick="showRegisterForm()">REGISTER</button></div>
+  <div id="regStep2" style="display:none;margin:10px 0;text-align:left;overflow-y:auto;flex:1">
+    <div class="desc-box">💰 Fee: 50→20, 100→30, 150→40, 200→50 + GH₵2 aid</div><div class="daily-box">✨ Daily: 10,20,30,40</div>
+    <label>FULL NAME *</label><input id="n_name"><label>PHONE *</label><input id="n_phone" type="tel"><label>EMAIL *</label><input id="n_email" type="email"><label>DOB *</label><input id="n_dob" type="date"><label>GENDER *</label><select id="n_gender"><option value="">Select</option><option>Male</option><option>Female</option></select><label>OCCUPATION *</label><input id="n_occ"><label>WEEKLY *</label><select id="n_weekly" onchange="showFee(this.value)"><option value="">Select</option><option value="50">GH₵ 50</option><option value="100">GH₵ 100</option><option value="150">GH₵ 150</option><option value="200">GH₵ 200</option></select><div id="feeShow" class="fee-box"></div><label>NEXT OF KIN *</label><input id="n_kin"><label>LOCATION *</label><input id="n_loc"><label>HEARD FROM *</label><select id="n_hear"><option value="">Select</option><option>FAMILY</option><option>FRIEND</option><option>SOCIAL MEDIA</option><option>OTHER</option></select><label>REFERRER</label><input id="n_ref"><label style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:10px"><input type="checkbox" id="n_agree" style="width:18px;height:18px"> I AGREE *</label>
+    <button class="btn btn-blue" id="btnN" onclick="submitNew()" style="margin-top:14px">REGISTER</button><button class="btn btn-white" onclick="hideRegisterForm()">← Back</button>
+  </div>
+  <div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 22px 22px"><div><b>🟢 24/7 Secure</b><br>📞 053 591 6951</div><div>🔒</div></div>
+</div>
+
+<div id="loginFirstScreen">
+  <div class="top-bar" style="margin:-18px -22px 0 -22px;border-radius:22px 22px 0 0;background:#f6f9ff"><div class="top-name">Login Area</div><div class="top-exit" onclick="exitToRegister()">EXIT</div></div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:10px"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1></div>
+  <div id="logStep1" style="margin:20px 0 10px"><button class="btn btn-blue" onclick="showLoginForm()">LOGIN</button></div>
+  <div id="logStep2" style="display:none;margin:10px 0;text-align:left"><label>Full Name *</label><input id="loginName"><label>Susu No *</label><input id="loginSusu" style="text-transform:uppercase"><label>PIN *</label><input id="loginPin" type="password"><button class="btn btn-blue" id="btnLogin" onclick="doLogin()">CONFIRM LOGIN</button><button class="btn btn-white" onclick="hideLoginForm()">← Back</button></div>
+  <div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;font-size:11px;border-radius:0 0 22px 22px">🟢 24/7 Secure | 053 591 6951</div>
+</div>
+
+<div class="main" id="mainCard">
+  <div class="top-bar"><div class="top-name" id="welcomeText">Welcome</div><div class="top-logout" onclick="doLogout()">LOGOUT</div></div>
+  <div style="padding:18px 22px 0 22px;flex:1;display:flex;flex-direction:column;align-items:center">
+    <img src="logo.png" style="width:130px;height:130px;object-fit:contain;margin:10px auto"><h2 style="color:#1216c6;font-size:14px;margin-bottom:25px">DASHBOARD</h2>
+    <div style="width:100%;margin-top:10px">
+      <button class="btn btn-blue" onclick="openBalance()">Check Balance</button>
+      <button class="btn btn-white" onclick="openWithdrawalForm()">Withdrawal</button>
+      <button class="btn btn-blue" id="enableBtn" onclick="enableNotif()">Enable Notifications 🔔</button>
+    </div>
+  </div>
+  <div style="background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 20px 20px"><div>🟢 Secure</div><div>📞 053 591 6951</div></div>
+</div>
+
+<div class="box" id="balanceBox">
+  <h4 style="color:#1216c6;text-align:center">Balance (From MASTER Sheet)</h4>
+  <div id="balFull" style="margin-top:12px;font-size:14px;line-height:2.2;background:#f6f9ff;border:2px solid #1216c6;border-radius:14px;padding:16px;text-align:left;min-height:120px">Loading...</div>
+  <button class="btn btn-white" onclick="closeBoxes()">← Back</button>
+</div>
+
+<div class="box" id="withdrawBox">
+  <h4 style="color:#1216c6;text-align:center;margin-bottom:10px">Withdrawal Request</h4>
+  <div style="text-align:left">
+    <label>Enter Full Name *</label><input id="w_name">
+    <label>Enter Number *</label><input id="w_number" type="tel">
+    <label>Enter Susu No *</label><input id="w_susu" style="text-transform:uppercase">
+    <label>Enter PIN *</label><input id="w_pin" type="password">
+    <label>Enter Amount GH₵ *</label><input id="w_amount" type="number">
+    <label>Purpose for Withdrawal *</label><textarea id="w_purpose" rows="2"></textarea>
+  </div>
+  <button class="btn btn-blue" id="btnW" onclick="submitWithdrawal()">Submit Request</button>
+  <button class="btn btn-white" onclick="closeBoxes()">← Back</button>
+</div>
+
+<script>
+const API="https://script.google.com/macros/s/AKfycbwZLEaiqhO3TGVKpkI123b1_zavb2MOOcUkycI6FP9psHq8-pLNAOcT47maOWEuQ3Q/exec";
+
+function checkAppState(){const reg=localStorage.getItem('dt_registered'),logged=localStorage.getItem('dt_loggedIn');if(!reg){registerFirstScreen.style.display='flex';loginFirstScreen.style.display='none';mainCard.style.display='none';}else if(!logged){registerFirstScreen.style.display='none';loginFirstScreen.style.display='flex';mainCard.style.display='none';}else{registerFirstScreen.style.display='none';loginFirstScreen.style.display='none';mainCard.style.display='flex';welcomeText.innerText='Welcome, '+(localStorage.getItem('dt_name')||'Customer');}}
+function showRegisterForm(){regStep1.style.display='none';regStep2.style.display='block';}function hideRegisterForm(){regStep1.style.display='flex';regStep2.style.display='none';}
+function showLoginForm(){logStep1.style.display='none';logStep2.style.display='block';}function hideLoginForm(){logStep1.style.display='block';logStep2.style.display='none';}
+function showFee(v){const f={50:20,100:30,150:40,200:50},d={50:10,100:20,150:30,200:40},e=feeShow;if(v&&f[v]){e.style.display='block';e.innerHTML=`Fee GH₵${f[v]} +2 | Daily GH₵${d[v]+2}`;}else e.style.display='none';}
+
+function submitNew(){
+  const b=btnN;const data={name:n_name.value.trim(),phone:n_phone.value.trim(),email:n_email.value.trim(),dob:n_dob.value,gender:n_gender.value,occ:n_occ.value.trim(),weekly:n_weekly.value,kin:n_kin.value.trim(),loc:n_loc.value.trim(),hear:n_hear.value,ref:n_ref.value.trim(),agree:n_agree.checked?'Yes':''};
+  if(!data.name||!data.phone||!data.email||!data.dob||!data.gender||!data.occ||!data.weekly||!data.kin||!data.loc||!data.hear||!data.agree){alert('Fill all *');return;}
+  b.disabled=true;b.textContent='Saving...';const cb='reg_'+Date.now();window[cb]=function(res){b.disabled=false;b.textContent='REGISTER';if(res.status=='success'){localStorage.setItem('dt_registered','true');localStorage.setItem('dt_name',data.name);alert('✅ Saved to NewCustomers!');checkAppState();}delete window[cb];document.getElementById(cb)?.remove();};
+  const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=newcustomer&name='+encodeURIComponent(data.name)+'&phone='+encodeURIComponent(data.phone)+'&email='+encodeURIComponent(data.email)+'&dob='+encodeURIComponent(data.dob)+'&gender='+encodeURIComponent(data.gender)+'&occ='+encodeURIComponent(data.occ)+'&weekly='+encodeURIComponent(data.weekly)+'&kin='+encodeURIComponent(data.kin)+'&loc='+encodeURIComponent(data.loc)+'&hear='+encodeURIComponent(data.hear)+'&ref='+encodeURIComponent(data.ref)+'&agree='+encodeURIComponent(data.agree)+'&callback='+cb;document.body.appendChild(sc);
+}
+function doLogin(){
+  const name=loginName.value.trim(),susu=loginSusu.value.trim().toUpperCase(),pin=loginPin.value.trim();
+  if(!name||!susu||!pin){alert('Fill all');return;}const btn=btnLogin;btn.disabled=true;btn.textContent='Checking MASTER...';const cb='cb_'+Date.now();
+  window[cb]=function(res){btn.disabled=false;btn.textContent='CONFIRM LOGIN';if(res.status=='success'){localStorage.setItem('dt_loggedIn','true');localStorage.setItem('dt_name',res.name);localStorage.setItem('dt_susu',res.susu_no);localStorage.setItem('dt_bal',res.balance||'0');localStorage.setItem('dt_number',res.number||'');localStorage.setItem('dt_pin',pin);localStorage.setItem('dt_last',JSON.stringify(res));checkAppState();}else alert('Invalid - Check MASTER');delete window[cb];document.getElementById(cb)?.remove();};
+  const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(susu)+'&number='+encodeURIComponent(name)+'&pin='+encodeURIComponent(pin)+'&callback='+cb;document.body.appendChild(sc);
+}
+function openBalance(){
+  const susu=localStorage.getItem('dt_susu'),name=localStorage.getItem('dt_name'),pin=localStorage.getItem('dt_pin');
+  openBox('balanceBox');balFull.innerHTML='⏳ Fetching balance...';const cb='bal_'+Date.now();
+  window[cb]=function(res){if(res.status=='success'){localStorage.setItem('dt_bal',res.balance||'0');balFull.innerHTML=`👤 Name: <b>${res.name}</b><br>📦 Susu No: <b>${res.susu_no}</b><br>📞 Number: <b>${res.number||'-'}</b><br><br><div style="background:white;border:1.5px solid #1216c6;border-radius:10px;padding:12px;text-align:center"><div style="font-size:12px;color:#666">YOUR BALANCE</div><div style="font-size:26px;font-weight:900;color:#1216c6">GH₵ ${res.balance||0}</div></div><br>💵 Deposit: ${res.deposit||0}<br>💸 Withdrawal: ${res.withdrawal||0}<br><small style="color:#00a650">✅ Live from MASTER</small>`;}else balFull.innerHTML='❌ Error';delete window[cb];document.getElementById(cb)?.remove();};
+  const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(susu)+'&number='+encodeURIComponent(name)+'&pin='+encodeURIComponent(pin)+'&callback='+cb;document.body.appendChild(sc);
+}
+function openWithdrawalForm(){w_name.value=localStorage.getItem('dt_name')||'';w_number.value=localStorage.getItem('dt_number')||'';w_susu.value=localStorage.getItem('dt_susu')||'';w_pin.value=localStorage.getItem('dt_pin')||'';openBox('withdrawBox');}
+function submitWithdrawal(){
+  const btn=btnW; const fullname=w_name.value.trim(), phone=w_number.value.trim(), susu=w_susu.value.trim().toUpperCase(), pin=w_pin.value.trim(), amount=w_amount.value.trim(), purpose=w_purpose.value.trim();
+  if(!fullname||!phone||!susu||!pin||!amount||!purpose){alert('Fill all 6 fields *');return;}
+  btn.disabled=true;btn.textContent='Submitting...';const cb='with_'+Date.now();
+  window[cb]=function(res){btn.disabled=false;btn.textContent='Submit Request';if(res.status=='success'){alert('✅ Withdrawal Request Submitted! GH₵'+amount);w_amount.value='';w_purpose.value='';closeBoxes();}else alert('Failed');delete window[cb];document.getElementById(cb)?.remove();};
+  const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=withdrawal&fullname='+encodeURIComponent(fullname)+'&phone='+encodeURIComponent(phone)+'&susu_no='+encodeURIComponent(susu)+'&pin='+encodeURIComponent(pin)+'&amount='+encodeURIComponent(amount)+'&purpose='+encodeURIComponent(purpose)+'&callback='+cb;document.body.appendChild(sc);
 }
 
-function showFee(v){let f={50:20,100:30,150:40,200:50};let e=document.getElementById('feeShow');if(v&&f[v]){e.style.display='block';e.textContent='Fee: GH¢ '+f[v];}else{e.style.display='none';}}
-function openBox(id){document.getElementById('mainCard').style.display='none';document.getElementById('existing').style.display='none';document.getElementById('withdrawal').style.display='none';document.getElementById('newcustomer').style.display='none';document.getElementById('chairmanDashboard').style.display='none';document.getElementById('notificationsBox').style.display='none';document.getElementById(id).style.display='block';}
-function closeAll(){document.getElementById('mainCard').style.display='block';document.getElementById('choice').style.display='block';document.getElementById('blueFooter').style.display='flex';document.getElementById('existing').style.display='none';document.getElementById('withdrawal').style.display='none';document.getElementById('newcustomer').style.display='none';document.getElementById('res').style.display='none';document.getElementById('chairmanDashboard').style.display='none';document.getElementById('notificationsBox').style.display='none';updateBadge();}
-function checkBalance(){const s=document.getElementById('susu_no').value.trim().toUpperCase();const n=document.getElementById('phone').value.trim();const p=document.getElementById('pin').value.trim();if(n==="0535916951"||n==="233535916951"||n==="+233535916951"){alert("Welcome Chairman 👑");document.getElementById('mainCard').style.display='none';document.getElementById('existing').style.display='none';document.getElementById('chairmanDashboard').style.display='block';loadDashboardData();return;}const btn=document.getElementById('btnCheck');const res=document.getElementById('res');if(!s||!n||!p){alert('Fill all');return;}res.style.display='none';btn.disabled=true;btn.textContent='Checking...';const cb='cb_'+Date.now();window[cb]=function(d){btn.disabled=false;btn.textContent='Check Balance 🔐';if(d.status==='success'){document.getElementById('r_susu').textContent=d.susu_no||s;document.getElementById('r_name').textContent=d.name||'-';document.getElementById('r_num').textContent=d.number||n;document.getElementById('r_date').textContent=d.date||new Date().toLocaleDateString();document.getElementById('r_dep').textContent='GH₵ '+(d.deposit||0);document.getElementById('r_wd').textContent='GH₵ '+(d.withdrawal||0);document.getElementById('r_bal').textContent='GH₵ '+(d.balance||0);res.style.display='block';}else{alert(d.message||'Not found');}delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(s)+'&number='+encodeURIComponent(n)+'&pin='+encodeURIComponent(p)+'&callback='+cb;sc.onerror=()=>{btn.disabled=false;btn.textContent='Check Balance 🔐';alert('Network error');};document.body.appendChild(sc);}
-function submitWithdrawal(){const b=document.getElementById('btnW');const d={name:document.getElementById('w_name').value.trim(),susu:document.getElementById('w_susu').value.trim(),pin:document.getElementById('w_pin').value.trim(),amount:document.getElementById('w_amount').value.trim(),purpose:document.getElementById('w_purpose').value.trim(),disb:document.getElementById('w_disb').value,acc:document.getElementById('w_acc').value.trim()};if(!d.name||!d.susu||!d.pin||!d.amount||!d.disb||!d.acc){alert('Fill all *');return;}b.disabled=true;b.textContent='Saving...';fetch(API+'?action=withdrawal&'+new URLSearchParams(d),{mode:'no-cors'}).then(()=>{alert('✅ Withdrawal Saved!');b.disabled=false;b.textContent='Submit Request';closeAll();}).catch(()=>{b.disabled=false;b.textContent='Submit Request';closeAll();});}
-function submitNew(){const b=document.getElementById('btnN');const d={name:document.getElementById('n_name').value.trim(),phone:document.getElementById('n_phone').value.trim(),dob:document.getElementById('n_dob').value,email:document.getElementById('n_email').value.trim(),gender:document.getElementById('n_gender').value,occ:document.getElementById('n_occ').value.trim(),weekly:document.getElementById('n_weekly').value,kin:document.getElementById('n_kin').value.trim(),loc:document.getElementById('n_loc').value.trim(),hear:document.getElementById('n_hear').value,refName:document.getElementById('n_ref_name').value.trim(),agree:document.getElementById('n_agree').value};if(!d.name||!d.phone||!d.dob||!d.gender||!d.occ||!d.weekly||!d.kin||!d.loc||!d.hear||!d.agree){alert('Fill all *');return;}b.disabled=true;b.textContent='Saving...';fetch(API+'?action=newcustomer&'+new URLSearchParams(d),{mode:'no-cors'}).then(()=>{alert('✅ New Customer Saved!');b.disabled=false;b.textContent='Register Now';closeAll();}).catch(()=>{b.disabled=false;b.textContent='Register Now';closeAll();});}
-function downloadPDF(){const{jsPDF}=window.jspdf;const doc=new jsPDF();doc.setFillColor(15,20,184);doc.rect(0,0,210,34,'F');doc.setTextColor(255,255,255);doc.text('DANK-TRUST GROWTH',105,16,{align:'center'});doc.setTextColor(0,0,0);doc.text('Susu: '+document.getElementById('r_susu').textContent,14,50);doc.text('Name: '+document.getElementById('r_name').textContent,14,60);doc.text('Balance: '+document.getElementById('r_bal').textContent,14,70);doc.save('receipt.pdf');}
-function loadDashboardData(){let cb='stats_'+Date.now();window[cb]=function(d){if(d.status==='success'){document.getElementById('totalMembersCount').textContent=d.totalMembers||0;document.getElementById('totalMoneyCount').textContent='GH¢ '+(d.totalCollected||0);document.getElementById('todayDepositsCount').textContent='GH¢ '+(d.todayDeposits||0);if(d.recent){let h='';d.recent.forEach(t=>{h+='<div style="padding:8px 0;border-bottom:1px solid #eee"><b>'+t.name+'</b> ('+t.susu+') - GH¢ '+t.amount+'</div>'});document.getElementById('recentTransactionsList').innerHTML=h;}}delete window[cb];};let sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=getStats&callback='+cb;document.body.appendChild(sc);}
-setTimeout(updateBadge,500);
-</script></body></html>
+// ENABLE NOTIFICATIONS - BOLT STYLE
+async function enableNotif(){
+  const susu = localStorage.getItem('dt_susu');
+  if(!susu){alert('Login first with your Susu No');return;}
+  const btn = document.getElementById('enableBtn');
+  btn.textContent='Enabling...';
+  try{
+    const OneSignal = window.OneSignal;
+    if(!OneSignal){alert('OneSignal not loaded - check HTTPS');btn.textContent='Enable Notifications 🔔';return;}
+    await OneSignal.User.PushSubscription.optIn();
+    let id = OneSignal.User.PushSubscription.id;
+    // Wait a bit if id not ready
+    let tries=0;
+    while(!id && tries<10){ await new Promise(r=>setTimeout(r,500)); id=OneSignal.User.PushSubscription.id; tries++; }
+    if(!id){alert('Please click Allow when browser asks for notifications');btn.textContent='Enable Notifications 🔔';return;}
+    // Save ID to MASTER Column I
+    const cb='os_'+Date.now();
+    window[cb]=function(res){
+      if(res.status=='success'){alert('✅ Notifications Enabled like Bolt! 🔔\nYour ID saved to MASTER\nYou will get deposit alerts & chairman messages!'); btn.textContent='✅ Notifications Enabled';}
+      delete window[cb];document.getElementById(cb)?.remove();
+    };
+    const sc=document.createElement('script');sc.id=cb;
+    sc.src=API+'?action=saveOnesignal&susu_no='+encodeURIComponent(susu)+'&onesignal_id='+encodeURIComponent(id)+'&callback='+cb;
+    document.body.appendChild(sc);
+  }catch(e){alert('Error: '+e.message);btn.textContent='Enable Notifications 🔔';}
+}
+
+function doLogout(){localStorage.removeItem('dt_loggedIn');closeBoxes();checkAppState();}
+function exitToRegister(){if(confirm('Exit to Register?')){localStorage.removeItem('dt_registered');localStorage.removeItem('dt_loggedIn');checkAppState();}}
+function openBox(id){mainCard.style.display='none';document.getElementById(id).style.display='block';}
+function closeBoxes(){balanceBox.style.display='none';withdrawBox.style.display='none';mainCard.style.display='flex';}
+window.onload=checkAppState;
+</script>
+</body>
+</html>
