@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Chairman Broadcast</title>
+<style>body{font-family:system-ui;padding:20px;max-width:400px;margin:auto}input,textarea{width:100%;padding:12px;margin:8px 0;border:2px solid #1216c6;border-radius:10px}button{width:100%;padding:15px;background:#1216c6;color:white;border:none;border-radius:12px;font-weight:800}</style></head><body>
+<h2 style="color:#1216c6">Chairman Broadcast 📢</h2>
+<label>Title</label><input id="b_title" value="DANK-TRUST GROWTH">
+<label>Message to ALL *</label><textarea id="b_msg" rows="4" placeholder="Tomorrow we close at 2pm"></textarea>
+<button id="btnB" onclick="sendBroadcast()">SEND TO ALL 🔔</button>
+<p id="status" style="margin-top:15px;font-size:12px"></p>
+<script>
+const API="https://script.google.com/macros/s/AKfycbwZLEaiqhO3TGVKpkI123b1_zavb2MOOcUkycI6FP9psHq8-pLNAOcT47maOWEuQ3Q/exec";
+function sendBroadcast(){
+  const t=b_title.value,m=b_msg.value;if(!m){alert('Enter message');return;}
+  btnB.disabled=true;btnB.textContent='Sending to all...';status.textContent='Fetching IDs from MASTER...';
+  const cb='bc_'+Date.now();
+  window[cb]=function(res){btnB.disabled=false;btnB.textContent='SEND TO ALL 🔔';status.innerHTML='✅ Sent to '+res.sent+' customers!';delete window[cb];document.getElementById(cb)?.remove();};
+  const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=broadcast&title='+encodeURIComponent(t)+'&message='+encodeURIComponent(m)+'&callback='+cb;document.body.appendChild(sc);
+}
+</script></body></html>
