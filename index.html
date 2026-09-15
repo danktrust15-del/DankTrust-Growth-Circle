@@ -17,20 +17,35 @@
     await OneSignal.init({
       appId: "854a8a7a-01b1-4453-9d1f-c6864ff5e9f3",
       allowLocalhostAsSecureOrigin: true,
+      serviceWorkerPath: "OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/" }
     });
     try{
-      if(OneSignal.User.PushSubscription.optedIn && OneSignal.User.PushSubscription.id){
-        const btn=document.getElementById('enableBtn');
-        const st=document.getElementById('notifStatus');
-        if(btn) btn.style.display='none';
-        if(st) st.style.display='block';
+      if(OneSignal.User && OneSignal.User.PushSubscription.optedIn){
+        setEnabledUI();
       }
     }catch(e){}
   });
+  function setEnabledUI(){
+    const btn=document.getElementById('enableBtn');
+    const st=document.getElementById('notifStatus');
+    if(btn){
+      btn.textContent='✅ Notifications Enabled';
+      btn.className='btn btn-white';
+      btn.disabled=true;
+      btn.style.opacity='1';
+      btn.style.display='block';
+      btn.onclick=null;
+    }
+    if(st){
+      st.style.display='block';
+      st.textContent='✅ Notifications Enabled - You will get updates like Bolt!';
+    }
+  }
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}body{background:white;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:14px}
-.btn{width:100%;padding:15px;border-radius:14px;border:none;font-weight:800;font-size:15px;cursor:pointer;margin:7px 0}.btn-blue{background:#1216c6;color:white}.btn-white{background:white;border:2px solid #1216c6;color:#1216c6}
+.btn{width:100%;padding:15px;border-radius:14px;border:none;font-weight:800;font-size:15px;cursor:pointer;margin:7px 0;transition:0.2s}.btn-blue{background:#1216c6;color:white}.btn-white{background:white;border:2px solid #1216c6;color:#1216c6}
 label{font-size:11px;font-weight:700;color:#1216c6;text-align:left;display:block;margin:10px 0 3px;text-transform:uppercase}input,select,textarea{width:100%;padding:12px;border:1.7px solid #c9d6f5;border-radius:12px;font-size:13px;outline:none}
 #registerFirstScreen,#loginFirstScreen{width:100%;max-width:380px;background:white;border:3px solid #1216c6;border-radius:22px;padding:18px 22px 0 22px;box-shadow:0 12px 30px rgba(0,0,0,.08);text-align:center;min-height:88vh;display:none;flex-direction:column}
 .welcome-big{font-family:'Poppins',sans-serif;font-size:52px;font-weight:900;color:#1216c6;letter-spacing:5px;display:block;line-height:0.9}.welcome-small{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:white;background:#1216c6;padding:6px 28px;border-radius:20px;display:inline-block;margin-top:10px}
@@ -46,7 +61,6 @@ label{font-size:11px;font-weight:700;color:#1216c6;text-align:left;display:block
 </style>
 </head>
 <body>
-<!-- YOUR BODY SAME AS BEFORE - WITH ADDED notifStatus DIV -->
 <div id="registerFirstScreen" style="display:flex"><div style="flex:0"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1><div style="color:#7fa0d6;font-size:12px">Growth Circle - Secure Susu</div></div><div id="regStep1" style="margin:20px 0 10px;flex:1;display:flex;flex-direction:column;justify-content:center"><button class="btn btn-blue" onclick="showRegisterForm()">REGISTER</button></div><div id="regStep2" style="display:none;margin:10px 0;text-align:left;overflow-y:auto;flex:1"><div class="desc-box">💰 Fee: 50→20, 100→30, 150→40, 200→50 + GH₵2 aid</div><div class="daily-box">✨ Daily: 10,20,30,40</div><label>FULL NAME *</label><input id="n_name"><label>PHONE *</label><input id="n_phone" type="tel"><label>EMAIL *</label><input id="n_email" type="email"><label>DOB *</label><input id="n_dob" type="date"><label>GENDER *</label><select id="n_gender"><option value="">Select</option><option>Male</option><option>Female</option></select><label>OCCUPATION *</label><input id="n_occ"><label>WEEKLY *</label><select id="n_weekly" onchange="showFee(this.value)"><option value="">Select</option><option value="50">GH₵ 50</option><option value="100">GH₵ 100</option><option value="150">GH₵ 150</option><option value="200">GH₵ 200</option></select><div id="feeShow" class="fee-box"></div><label>NEXT OF KIN *</label><input id="n_kin"><label>LOCATION *</label><input id="n_loc"><label>HEARD FROM *</label><select id="n_hear"><option value="">Select</option><option>FAMILY</option><option>FRIEND</option><option>SOCIAL MEDIA</option><option>OTHER</option></select><label>REFERRER</label><input id="n_ref"><label style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:10px"><input type="checkbox" id="n_agree" style="width:18px;height:18px"> I AGREE *</label><button class="btn btn-blue" id="btnN" onclick="submitNew()" style="margin-top:14px">REGISTER</button><button class="btn btn-white" onclick="hideRegisterForm()">← Back</button></div><div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 22px 22px"><div><b>🟢 24/7 Secure</b><br>📞 053 591 6951</div><div>🔒</div></div></div>
 <div id="loginFirstScreen"><div class="top-bar" style="margin:-18px -22px 0 -22px;border-radius:22px 22px 0 0;background:#f6f9ff"><div class="top-name">Login Area</div><div class="top-exit" onclick="exitToRegister()">EXIT</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:10px"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1></div><div id="logStep1" style="margin:20px 0 10px"><button class="btn btn-blue" onclick="showLoginForm()">LOGIN</button></div><div id="logStep2" style="display:none;margin:10px 0;text-align:left"><label>Full Name *</label><input id="loginName"><label>Susu No *</label><input id="loginSusu" style="text-transform:uppercase"><label>PIN *</label><input id="loginPin" type="password"><button class="btn btn-blue" id="btnLogin" onclick="doLogin()">CONFIRM LOGIN</button><button class="btn btn-white" onclick="hideLoginForm()">← Back</button></div><div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;font-size:11px;border-radius:0 0 22px 22px">🟢 24/7 Secure | 053 591 6951</div></div>
 <div class="main" id="mainCard"><div class="top-bar"><div class="top-name" id="welcomeText">Welcome</div><div class="top-logout" onclick="doLogout()">LOGOUT</div></div><div style="padding:18px 22px 0 22px;flex:1;display:flex;flex-direction:column;align-items:center"><img src="logo.png" style="width:130px;height:130px;object-fit:contain;margin:10px auto"><h2 style="color:#1216c6;font-size:14px;margin-bottom:25px">DASHBOARD</h2><div style="width:100%;margin-top:10px"><button class="btn btn-blue" onclick="openBalance()">Check Balance</button><button class="btn btn-white" onclick="openWithdrawalForm()">Withdrawal</button><button class="btn btn-blue" id="enableBtn" onclick="enableNotif()">Enable Notifications 🔔</button><div id="notifStatus" style="display:none;text-align:center;margin-top:8px;font-size:11px;color:#00a650;font-weight:700">✅ Notifications Enabled - You will get updates like Bolt!</div></div></div><div style="background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 20px 20px"><div>🟢 Secure</div><div>📞 053 591 6951</div></div></div>
@@ -67,7 +81,6 @@ async function enableNotif(){
   const susu = localStorage.getItem('dt_susu');
   if(!susu){alert('Login first');return;}
   const btn = document.getElementById('enableBtn');
-  const status = document.getElementById('notifStatus');
   btn.textContent='⏳ Waiting for Allow...';
   window.OneSignalDeferred.push(async function(OneSignal){
     try{
@@ -86,8 +99,7 @@ async function enableNotif(){
       window[cb]=function(res){
         if(res.status=='success'){
           alert('✅ Enabled! You will get Chairman messages like Bolt! 🔔');
-          btn.style.display='none';
-          status.style.display='block';
+          setEnabledUI();
         }
         delete window[cb];document.getElementById(cb)?.remove();
       };
