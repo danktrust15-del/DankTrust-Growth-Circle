@@ -1,17 +1,40 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Chairman Broadcast</title>
-<style>body{font-family:system-ui;padding:20px;max-width:400px;margin:auto}input,textarea{width:100%;padding:12px;margin:8px 0;border:2px solid #1216c6;border-radius:10px}button{width:100%;padding:15px;background:#1216c6;color:white;border:none;border-radius:12px;font-weight:800}</style></head><body>
-<h2 style="color:#1216c6">Chairman Broadcast 📢</h2>
-<label>Title</label><input id="b_title" value="DANK-TRUST GROWTH">
-<label>Message to ALL *</label><textarea id="b_msg" rows="4" placeholder="Tomorrow we close at 2pm"></textarea>
+<style>body{font-family:system-ui;padding:20px;max-width:400px;margin:auto;background:#f6f9ff}input,textarea,select{width:100%;padding:12px;margin:8px 0;border:2px solid #1216c6;border-radius:10px;font-size:13px}button{width:100%;padding:15px;background:#1216c6;color:white;border:none;border-radius:12px;font-weight:800;margin:6px 0;cursor:pointer}.btn-white{background:white;color:#1216c6;border:2px solid #1216c6}h2{color:#1216c6;text-align:center}</style></head><body>
+<h2>Chairman Broadcast 📢</h2>
+<div style="background:white;border:2px solid #1216c6;border-radius:14px;padding:16px">
+<label>Title (Bolt style)</label><input id="b_title" value="DANK-TRUST GROWTH">
+<label>Message to Customers *</label><textarea id="b_msg" rows="4" placeholder="Tomorrow we close at 2pm - Pay early!"></textarea>
+<label>Send To</label><select id="b_target"><option value="ALL">ALL Customers (Broadcast)</option><option value="ONE">ONE Customer (Enter DT No)</option></select>
+<div id="oneBox" style="display:none"><label>Enter Susu No (e.g. DT002)</label><input id="b_susu" placeholder="DT002" style="text-transform:uppercase"></div>
 <button id="btnB" onclick="sendBroadcast()">SEND TO ALL 🔔</button>
-<p id="status" style="margin-top:15px;font-size:12px"></p>
+<button class="btn-white" onclick="testDT002()">Test Send to DT002 Only (You)</button>
+<p id="status" style="margin-top:15px;font-size:12px;text-align:center;font-weight:700"></p>
+</div>
 <script>
 const API="https://script.google.com/macros/s/AKfycbwZLEaiqhO3TGVKpkI123b1_zavb2MOOcUkycI6FP9psHq8-pLNAOcT47maOWEuQ3Q/exec";
+document.getElementById('b_target').addEventListener('change', function(){
+  document.getElementById('oneBox').style.display = this.value==='ONE'? 'block' : 'none';
+  document.getElementById('btnB').textContent = this.value==='ONE'? 'SEND TO ONE 🔔' : 'SEND TO ALL 🔔';
+});
+function testDT002(){
+  b_target.value='ONE'; b_susu.value='DT002'; b_title.value='DANK-TRUST Test'; b_msg.value='✅ Chairman test - Your notification works like Bolt! 🔔';
+  document.getElementById('oneBox').style.display='block';
+  sendBroadcast();
+}
 function sendBroadcast(){
-  const t=b_title.value,m=b_msg.value;if(!m){alert('Enter message');return;}
-  btnB.disabled=true;btnB.textContent='Sending to all...';status.textContent='Fetching IDs from MASTER...';
+  const t=b_title.value,m=b_msg.value,target=b_target.value,susu=b_susu.value.trim().toUpperCase();
+  if(!m){alert('Enter message');return;}
+  if(target==='ONE' &&!susu){alert('Enter DT No like DT002');return;}
+  btnB.disabled=true;btnB.textContent='⏳ Sending...';status.textContent='Fetching IDs from MASTER & Sending via OneSignal...';
   const cb='bc_'+Date.now();
-  window[cb]=function(res){btnB.disabled=false;btnB.textContent='SEND TO ALL 🔔';status.innerHTML='✅ Sent to '+res.sent+' customers!';delete window[cb];document.getElementById(cb)?.remove();};
-  const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=broadcast&title='+encodeURIComponent(t)+'&message='+encodeURIComponent(m)+'&callback='+cb;document.body.appendChild(sc);
+  window[cb]=function(res){
+    btnB.disabled=false;btnB.textContent= target==='ONE'? 'SEND TO ONE 🔔' : 'SEND TO ALL 🔔';
+    if(res.status==='success'){ status.innerHTML='✅ Sent to '+res.sent+' customers!<br>Message: '+m; status.style.color='#00a650'; }
+    else { status.innerHTML='❌ Failed: '+(res.error||'Check Google Script'); status.style.color='red'; }
+    delete window[cb];document.getElementById(cb)?.remove();
+  };
+  const sc=document.createElement('script');sc.id=cb;
+  let url=API+'?action=broadcast&title='+encodeURIComponent(t)+'&message='+encodeURIComponent(m)+'&target='+encodeURIComponent(target)+'&susu_no='+encodeURIComponent(susu)+'&callback='+cb;
+  sc.src=url;document.body.appendChild(sc);
 }
 </script></body></html>
