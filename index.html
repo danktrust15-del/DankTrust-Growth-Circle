@@ -29,18 +29,8 @@
   function setEnabledUI(){
     const btn=document.getElementById('enableBtn');
     const st=document.getElementById('notifStatus');
-    if(btn){
-      btn.textContent='✅ Notifications Enabled';
-      btn.className='btn btn-white';
-      btn.disabled=true;
-      btn.style.opacity='1';
-      btn.style.display='block';
-      btn.onclick=null;
-    }
-    if(st){
-      st.style.display='block';
-      st.textContent='✅ Notifications Enabled - You will get updates like Bolt!';
-    }
+    if(btn){btn.textContent='✅ Notifications Enabled';btn.className='btn btn-white';btn.disabled=true;btn.style.opacity='1';btn.style.display='block';btn.onclick=null;}
+    if(st){st.style.display='block';st.textContent='✅ Notifications Enabled - You will get updates like Bolt!';}
   }
 </script>
 <style>
@@ -52,63 +42,73 @@ label{font-size:11px;font-weight:700;color:#1216c6;text-align:left;display:block
 .logo-big{width:300px;height:300px;object-fit:contain;display:block;margin:0 auto}
 .main{width:100%;max-width:380px;background:white;border:3px solid #1216c6;border-radius:22px;padding:0;display:none;flex-direction:column;min-height:88vh}
 .fee-box{display:none;background:#1216c6;color:white;padding:12px;border-radius:10px;margin-top:8px;font-size:11px;font-weight:700;text-align:center}
-.desc-box{background:#f0f4ff;border-left:4px solid #1216c6;padding:12px;border-radius:8px;font-size:11px;color:#333;text-align:left;margin-bottom:10px}
-.daily-box{background:#e8fff0;border-left:4px solid #00a650;padding:10px;border-radius:8px;font-size:11px;color:#0a5a2e;text-align:left;margin-bottom:10px}
+.desc-box{background:#f0f4ff;border-left:4px solid #1216c6;padding:14px;border-radius:12px;font-size:11.5px;color:#222;text-align:left;margin-bottom:10px;line-height:1.5}
+.daily-box{background:#e8fff0;border-left:4px solid #00a650;padding:14px;border-radius:12px;font-size:11.5px;color:#0a5a2e;text-align:left;margin-bottom:12px;line-height:1.5}
+.info-card{background:#fff8e1;border-left:4px solid #ff9800;padding:12px;border-radius:10px;font-size:11px;color:#5a4200;text-align:left;margin-bottom:12px;line-height:1.4}
 .top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1.5px solid #e6ecff}
 .top-name{font-size:12px;font-weight:800;color:#1216c6;max-width:65%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .top-logout,.top-exit{font-size:9px;font-weight:800;color:#1216c6;border:1.2px solid #1216c6;border-radius:14px;padding:4px 10px;background:white;cursor:pointer}
 .box{width:100%;max-width:380px;background:white;border:2px solid #1216c6;border-radius:18px;padding:16px;margin-top:10px;display:none}
+.balance-hero{background:linear-gradient(135deg,#1216c6,#3b41f5);color:white;border-radius:18px;padding:20px 18px;text-align:center;margin:12px 0 14px;box-shadow:0 8px 20px rgba(18,22,198,.3)}
 </style>
 </head>
 <body>
-<div id="registerFirstScreen" style="display:flex"><div style="flex:0"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1><div style="color:#7fa0d6;font-size:12px">Growth Circle - Secure Susu</div></div><div id="regStep1" style="margin:20px 0 10px;flex:1;display:flex;flex-direction:column;justify-content:center"><button class="btn btn-blue" onclick="showRegisterForm()">REGISTER</button></div><div id="regStep2" style="display:none;margin:10px 0;text-align:left;overflow-y:auto;flex:1"><div class="desc-box">💰 Fee: 50→20, 100→30, 150→40, 200→50 + GH₵2 aid</div><div class="daily-box">✨ Daily: 10,20,30,40</div><label>FULL NAME *</label><input id="n_name"><label>PHONE *</label><input id="n_phone" type="tel"><label>EMAIL *</label><input id="n_email" type="email"><label>DOB *</label><input id="n_dob" type="date"><label>GENDER *</label><select id="n_gender"><option value="">Select</option><option>Male</option><option>Female</option></select><label>OCCUPATION *</label><input id="n_occ"><label>WEEKLY *</label><select id="n_weekly" onchange="showFee(this.value)"><option value="">Select</option><option value="50">GH₵ 50</option><option value="100">GH₵ 100</option><option value="150">GH₵ 150</option><option value="200">GH₵ 200</option></select><div id="feeShow" class="fee-box"></div><label>NEXT OF KIN *</label><input id="n_kin"><label>LOCATION *</label><input id="n_loc"><label>HEARD FROM *</label><select id="n_hear"><option value="">Select</option><option>FAMILY</option><option>FRIEND</option><option>SOCIAL MEDIA</option><option>OTHER</option></select><label>REFERRER</label><input id="n_ref"><label style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:10px"><input type="checkbox" id="n_agree" style="width:18px;height:18px"> I AGREE *</label><button class="btn btn-blue" id="btnN" onclick="submitNew()" style="margin-top:14px">REGISTER</button><button class="btn btn-white" onclick="hideRegisterForm()">← Back</button></div><div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 22px 22px"><div><b>🟢 24/7 Secure</b><br>📞 053 591 6951</div><div>🔒</div></div></div>
+<div id="registerFirstScreen" style="display:flex"><div style="flex:0"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1><div style="color:#7fa0d6;font-size:12px">Growth Circle - Secure Susu</div></div><div id="regStep1" style="margin:20px 0 10px;flex:1;display:flex;flex-direction:column;justify-content:center"><button class="btn btn-blue" onclick="showRegisterForm()">REGISTER</button></div><div id="regStep2" style="display:none;margin:10px 0;text-align:left;overflow-y:auto;flex:1">
+<div class="desc-box">
+<b style="font-size:12px;color:#1216c6">💰 REGISTRATION - HOW IT WORKS</b><br><br>
+Choose your weekly savings target. You pay a <b>one-time registration fee</b> only:<br>
+• <b>GH¢50</b> weekly target → Pay <b>GH¢20</b> + GH¢2 welfare = <b>GH¢22</b><br>
+• <b>GH¢100</b> weekly → Pay <b>GH¢30</b> + GH¢2 = <b>GH¢32</b><br>
+• <b>GH¢150</b> weekly → Pay <b>GH¢40</b> + GH¢2 = <b>GH¢42</b><br>
+• <b>GH¢200</b> weekly → Pay <b>GH¢50</b> + GH¢2 = <b>GH¢52</b><br><br>
+<span style="color:#555">This fee is paid once when joining. After that you only save your daily amount.</span>
+</div>
+<div class="daily-box">
+<b style="font-size:12px;color:#00a650">✨ DAILY CONTRIBUTION - SIMPLE</b><br><br>
+You save small-small every day from Monday to Friday to reach your weekly target:<br>
+• Target <b>GH¢50</b> → Pay <b>GH¢10 daily</b><br>
+• Target <b>GH¢100</b> → Pay <b>GH¢20 daily</b><br>
+• Target <b>GH¢150</b> → Pay <b>GH¢30 daily</b><br>
+• Target <b>GH¢200</b> → Pay <b>GH¢40 daily</b><br><br>
+<span style="color:#0a5a2e">No stress! Your collector will come for it daily. Secure & trusted.</span>
+</div>
+<label>FULL NAME *</label><input id="n_name"><label>PHONE *</label><input id="n_phone" type="tel"><label>EMAIL *</label><input id="n_email" type="email"><label>DOB *</label><input id="n_dob" type="date"><label>GENDER *</label><select id="n_gender"><option value="">Select</option><option>Male</option><option>Female</option></select><label>OCCUPATION *</label><input id="n_occ"><label>WEEKLY *</label><select id="n_weekly" onchange="showFee(this.value)"><option value="">Select your weekly target</option><option value="50">GH₵ 50 weekly → GH₵10 daily</option><option value="100">GH₵ 100 weekly → GH₵20 daily</option><option value="150">GH₵ 150 weekly → GH₵30 daily</option><option value="200">GH₵ 200 weekly → GH₵40 daily</option></select><div id="feeShow" class="fee-box"></div><label>NEXT OF KIN *</label><input id="n_kin"><label>LOCATION *</label><input id="n_loc"><label>HEARD FROM *</label><select id="n_hear"><option value="">Select</option><option>FAMILY</option><option>FRIEND</option><option>SOCIAL MEDIA</option><option>OTHER</option></select><label>REFERRER</label><input id="n_ref"><label style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:10px"><input type="checkbox" id="n_agree" style="width:18px;height:18px"> I AGREE *</label><button class="btn btn-blue" id="btnN" onclick="submitNew()" style="margin-top:14px">REGISTER</button><button class="btn btn-white" onclick="hideRegisterForm()">← Back</button></div><div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 22px 22px"><div><b>🟢 24/7 Secure</b><br>📞 053 591 6951</div><div>🔒</div></div></div>
 <div id="loginFirstScreen"><div class="top-bar" style="margin:-18px -22px 0 -22px;border-radius:22px 22px 0 0;background:#f6f9ff"><div class="top-name">Login Area</div><div class="top-exit" onclick="exitToRegister()">EXIT</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:10px"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1></div><div id="logStep1" style="margin:20px 0 10px"><button class="btn btn-blue" onclick="showLoginForm()">LOGIN</button></div><div id="logStep2" style="display:none;margin:10px 0;text-align:left"><label>Full Name *</label><input id="loginName"><label>Susu No *</label><input id="loginSusu" style="text-transform:uppercase"><label>PIN *</label><input id="loginPin" type="password"><button class="btn btn-blue" id="btnLogin" onclick="doLogin()">CONFIRM LOGIN</button><button class="btn btn-white" onclick="hideLoginForm()">← Back</button></div><div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;font-size:11px;border-radius:0 0 22px 22px">🟢 24/7 Secure | 053 591 6951</div></div>
 <div class="main" id="mainCard"><div class="top-bar"><div class="top-name" id="welcomeText">Welcome</div><div class="top-logout" onclick="doLogout()">LOGOUT</div></div><div style="padding:18px 22px 0 22px;flex:1;display:flex;flex-direction:column;align-items:center"><img src="logo.png" style="width:130px;height:130px;object-fit:contain;margin:10px auto"><h2 style="color:#1216c6;font-size:14px;margin-bottom:25px">DASHBOARD</h2><div style="width:100%;margin-top:10px"><button class="btn btn-blue" onclick="openBalance()">Check Balance</button><button class="btn btn-white" onclick="openWithdrawalForm()">Withdrawal</button><button class="btn btn-blue" id="enableBtn" onclick="enableNotif()">Enable Notifications 🔔</button><div id="notifStatus" style="display:none;text-align:center;margin-top:8px;font-size:11px;color:#00a650;font-weight:700">✅ Notifications Enabled - You will get updates like Bolt!</div></div></div><div style="background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 20px 20px"><div>🟢 Secure</div><div>📞 053 591 6951</div></div></div>
-<div class="box" id="balanceBox"><h4 style="color:#1216c6;text-align:center">Balance</h4><div id="balFull" style="margin-top:12px;font-size:14px;line-height:2.2;background:#f6f9ff;border:2px solid #1216c6;border-radius:14px;padding:16px;text-align:left;min-height:120px">Loading...</div><button class="btn btn-white" onclick="closeBoxes()">← Back</button></div>
-<div class="box" id="withdrawBox"><h4 style="color:#1216c6;text-align:center;margin-bottom:10px">Withdrawal Request</h4><div style="text-align:left"><label>Enter Full Name *</label><input id="w_name"><label>Enter Number *</label><input id="w_number" type="tel"><label>Enter Susu No *</label><input id="w_susu" style="text-transform:uppercase"><label>Enter PIN *</label><input id="w_pin" type="password"><label>Enter Amount GH₵ *</label><input id="w_amount" type="number"><label>Purpose for Withdrawal *</label><textarea id="w_purpose" rows="2"></textarea></div><button class="btn btn-blue" id="btnW" onclick="submitWithdrawal()">Submit Request</button><button class="btn btn-white" onclick="closeBoxes()">← Back</button></div>
+<div class="box" id="balanceBox">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><h4 style="color:#1216c6;">💳 My Savings</h4><span style="font-size:10px;background:#eef2ff;color:#1216c6;padding:4px 10px;border-radius:20px;font-weight:700">SECURE</span></div>
+<div id="balFull" style="margin-top:5px;font-size:13px;line-height:1.6;min-height:160px">Loading...</div>
+<button class="btn btn-white" onclick="closeBoxes()">← Back to Dashboard</button>
+</div>
+<div class="box" id="withdrawBox">
+<h4 style="color:#1216c6;text-align:center;margin-bottom:10px">💸 Withdrawal Request</h4>
+<div class="info-card">⏰ <b>Withdrawal will be processed within 24 hours.</b> Please double-check your Susu number, phone and amount before submitting. For urgent help, call 053 591 6951.</div>
+<div style="text-align:left"><label>Enter Full Name *</label><input id="w_name"><label>Enter Number *</label><input id="w_number" type="tel"><label>Enter Susu No *</label><input id="w_susu" style="text-transform:uppercase"><label>Enter PIN *</label><input id="w_pin" type="password"><label>Enter Amount GH₵ *</label><input id="w_amount" type="number"><label>Purpose for Withdrawal *</label><textarea id="w_purpose" rows="2"></textarea></div><button class="btn btn-blue" id="btnW" onclick="submitWithdrawal()">Submit Request</button><button class="btn btn-white" onclick="closeBoxes()">← Back</button></div>
 <script>
 const API="https://script.google.com/macros/s/AKfycbwZLEaiqhO3TGVKpkI123b1_zavb2MOOcUkycI6FP9psHq8-pLNAOcT47maOWEuQ3Q/exec";
 function checkAppState(){const reg=localStorage.getItem('dt_registered'),logged=localStorage.getItem('dt_loggedIn');if(!reg){registerFirstScreen.style.display='flex';loginFirstScreen.style.display='none';mainCard.style.display='none';}else if(!logged){registerFirstScreen.style.display='none';loginFirstScreen.style.display='flex';mainCard.style.display='none';}else{registerFirstScreen.style.display='none';loginFirstScreen.style.display='none';mainCard.style.display='flex';welcomeText.innerText='Welcome, '+(localStorage.getItem('dt_name')||'Customer');}}
 function showRegisterForm(){regStep1.style.display='none';regStep2.style.display='block';}function hideRegisterForm(){regStep1.style.display='flex';regStep2.style.display='none';}
 function showLoginForm(){logStep1.style.display='none';logStep2.style.display='block';}function hideLoginForm(){logStep1.style.display='block';logStep2.style.display='none';}
-function showFee(v){const f={50:20,100:30,150:40,200:50},d={50:10,100:20,150:30,200:40},e=feeShow;if(v&&f[v]){e.style.display='block';e.innerHTML=`Fee GH₵${f[v]} +2 | Daily GH₵${d[v]+2}`;}else e.style.display='none';}
+function showFee(v){const f={50:20,100:30,150:40,200:50},d={50:10,100:20,150:30,200:40},e=feeShow;if(v&&f[v]){e.style.display='block';e.innerHTML=`You chose GH₵${v} weekly → Pay GH₵${d[v]} daily. Registration fee GH₵${f[v]} + GH₵2 aid = GH₵${f[v]+2} one-time`;}else e.style.display='none';}
 function submitNew(){const b=btnN;const data={name:n_name.value.trim(),phone:n_phone.value.trim(),email:n_email.value.trim(),dob:n_dob.value,gender:n_gender.value,occ:n_occ.value.trim(),weekly:n_weekly.value,kin:n_kin.value.trim(),loc:n_loc.value.trim(),hear:n_hear.value,ref:n_ref.value.trim(),agree:n_agree.checked?'Yes':''};if(!data.name||!data.phone||!data.email||!data.dob||!data.gender||!data.occ||!data.weekly||!data.kin||!data.loc||!data.hear||!data.agree){alert('Fill all *');return;}b.disabled=true;b.textContent='Saving...';const cb='reg_'+Date.now();window[cb]=function(res){b.disabled=false;b.textContent='REGISTER';if(res.status=='success'){localStorage.setItem('dt_registered','true');localStorage.setItem('dt_name',data.name);alert('✅ Saved!');checkAppState();}delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=newcustomer&name='+encodeURIComponent(data.name)+'&phone='+encodeURIComponent(data.phone)+'&email='+encodeURIComponent(data.email)+'&dob='+encodeURIComponent(data.dob)+'&gender='+encodeURIComponent(data.gender)+'&occ='+encodeURIComponent(data.occ)+'&weekly='+encodeURIComponent(data.weekly)+'&kin='+encodeURIComponent(data.kin)+'&loc='+encodeURIComponent(data.loc)+'&hear='+encodeURIComponent(data.hear)+'&ref='+encodeURIComponent(data.ref)+'&agree='+encodeURIComponent(data.agree)+'&callback='+cb;document.body.appendChild(sc);}
 function doLogin(){const name=loginName.value.trim(),susu=loginSusu.value.trim().toUpperCase(),pin=loginPin.value.trim();if(!name||!susu||!pin){alert('Fill all');return;}const btn=btnLogin;btn.disabled=true;btn.textContent='Checking MASTER...';const cb='cb_'+Date.now();window[cb]=function(res){btn.disabled=false;btn.textContent='CONFIRM LOGIN';if(res.status=='success'){localStorage.setItem('dt_loggedIn','true');localStorage.setItem('dt_name',res.name);localStorage.setItem('dt_susu',res.susu_no);localStorage.setItem('dt_bal',res.balance||'0');localStorage.setItem('dt_number',res.number||'');localStorage.setItem('dt_pin',pin);localStorage.setItem('dt_last',JSON.stringify(res));checkAppState();}else alert('Invalid - Check MASTER');delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(susu)+'&number='+encodeURIComponent(name)+'&pin='+encodeURIComponent(pin)+'&callback='+cb;document.body.appendChild(sc);}
-function openBalance(){const susu=localStorage.getItem('dt_susu'),name=localStorage.getItem('dt_name'),pin=localStorage.getItem('dt_pin');openBox('balanceBox');balFull.innerHTML='⏳ Fetching balance...';const cb='bal_'+Date.now();window[cb]=function(res){if(res.status=='success'){localStorage.setItem('dt_bal',res.balance||'0');balFull.innerHTML=`👤 Name: <b>${res.name}</b><br>📦 Susu No: <b>${res.susu_no}</b><br>📞 Number: <b>${res.number||'-'}</b><br><br><div style="background:white;border:1.5px solid #1216c6;border-radius:10px;padding:12px;text-align:center"><div style="font-size:12px;color:#666">YOUR BALANCE</div><div style="font-size:26px;font-weight:900;color:#1216c6">GH₵ ${res.balance||0}</div></div>`;}else balFull.innerHTML='❌ Error';delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(susu)+'&number='+encodeURIComponent(name)+'&pin='+encodeURIComponent(pin)+'&callback='+cb;document.body.appendChild(sc);}
+function openBalance(){const susu=localStorage.getItem('dt_susu'),name=localStorage.getItem('dt_name'),pin=localStorage.getItem('dt_pin');openBox('balanceBox');balFull.innerHTML='⏳ Fetching balance...';const cb='bal_'+Date.now();window[cb]=function(res){if(res.status=='success'){localStorage.setItem('dt_bal',res.balance||'0');
+balFull.innerHTML=`
+<div class="balance-hero">
+<div style="font-size:11px;letter-spacing:1px;opacity:.8">TOTAL SAVINGS</div>
+<div style="font-size:32px;font-weight:900;margin:8px 0">GH₵ ${res.balance||0}</div>
+<div style="font-size:11px;background:rgba(255,255,255,.2);display:inline-block;padding:4px 12px;border-radius:20px">Susu No: ${res.susu_no}</div>
+</div>
+<div style="background:#f6f9ff;border:1.5px solid #e6ecff;border-radius:14px;padding:12px">
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px;color:#666">👤 Name</span><b style="font-size:12px">${res.name}</b></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:11px;color:#666">📦 Susu No</span><b style="font-size:12px">${res.susu_no}</b></div>
+<div style="display:flex;justify-content:space-between"><span style="font-size:11px;color:#666">📞 Number</span><b style="font-size:12px">${res.number||'-'}</b></div>
+</div>
+<div style="text-align:center;margin-top:12px;font-size:10px;color:#888">🔒 Secured by DANK-TRUST Growth Circle</div>
+`;}else balFull.innerHTML='❌ Error loading';delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(susu)+'&number='+encodeURIComponent(name)+'&pin='+encodeURIComponent(pin)+'&callback='+cb;document.body.appendChild(sc);}
 function openWithdrawalForm(){w_name.value=localStorage.getItem('dt_name')||'';w_number.value=localStorage.getItem('dt_number')||'';w_susu.value=localStorage.getItem('dt_susu')||'';w_pin.value=localStorage.getItem('dt_pin')||'';openBox('withdrawBox');}
-function submitWithdrawal(){const btn=btnW; const fullname=w_name.value.trim(), phone=w_number.value.trim(), susu=w_susu.value.trim().toUpperCase(), pin=w_pin.value.trim(), amount=w_amount.value.trim(), purpose=w_purpose.value.trim();if(!fullname||!phone||!susu||!pin||!amount||!purpose){alert('Fill all 6 fields *');return;}btn.disabled=true;btn.textContent='Submitting...';const cb='with_'+Date.now();window[cb]=function(res){btn.disabled=false;btn.textContent='Submit Request';if(res.status=='success'){alert('✅ Withdrawal Submitted! GH₵'+amount);w_amount.value='';w_purpose.value='';closeBoxes();}else alert('Failed');delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=withdrawal&fullname='+encodeURIComponent(fullname)+'&phone='+encodeURIComponent(phone)+'&susu_no='+encodeURIComponent(susu)+'&pin='+encodeURIComponent(pin)+'&amount='+encodeURIComponent(amount)+'&purpose='+encodeURIComponent(purpose)+'&callback='+cb;document.body.appendChild(sc);}
-async function enableNotif(){
-  const susu = localStorage.getItem('dt_susu');
-  if(!susu){alert('Login first');return;}
-  const btn = document.getElementById('enableBtn');
-  btn.textContent='⏳ Waiting for Allow...';
-  window.OneSignalDeferred.push(async function(OneSignal){
-    try{
-      await OneSignal.Notifications.requestPermission();
-      await OneSignal.User.PushSubscription.optIn();
-      try{ await OneSignal.login(susu); }catch(e){}
-      let id = OneSignal.User.PushSubscription.id;
-      let tries=0;
-      while(!id && tries<20){ await new Promise(r=>setTimeout(r,800)); id=OneSignal.User.PushSubscription.id; tries++; }
-      if(!id ||!OneSignal.Notifications.permission){
-        alert('❌ Clicked BLOCK? Fix: iPhone Settings > Apps > DANK-TRUST > Notifications > ALLOW, then Clear Safari History');
-        btn.textContent='Enable Notifications 🔔';
-        return;
-      }
-      const cb='os_'+Date.now();
-      window[cb]=function(res){
-        if(res.status=='success'){
-          alert('✅ Enabled! You will get Chairman messages like Bolt! 🔔');
-          setEnabledUI();
-        }
-        delete window[cb];document.getElementById(cb)?.remove();
-      };
-      const sc=document.createElement('script');sc.id=cb;
-      sc.src=API+'?action=saveOnesignal&susu_no='+encodeURIComponent(susu)+'&onesignal_id='+encodeURIComponent(id)+'&callback='+cb;
-      document.body.appendChild(sc);
-    }catch(e){ alert('Error: '+e.message); btn.textContent='Enable Notifications 🔔'; }
-  });
-}
+function submitWithdrawal(){const btn=btnW; const fullname=w_name.value.trim(), phone=w_number.value.trim(), susu=w_susu.value.trim().toUpperCase(), pin=w_pin.value.trim(), amount=w_amount.value.trim(), purpose=w_purpose.value.trim();if(!fullname||!phone||!susu||!pin||!amount||!purpose){alert('Fill all 6 fields *');return;}btn.disabled=true;btn.textContent='Submitting...';const cb='with_'+Date.now();window[cb]=function(res){btn.disabled=false;btn.textContent='Submit Request';if(res.status=='success'){alert('✅ Withdrawal Submitted! GH₵'+amount+' - Will be processed within 24 hours');w_amount.value='';w_purpose.value='';closeBoxes();}else alert('Failed');delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=withdrawal&fullname='+encodeURIComponent(fullname)+'&phone='+encodeURIComponent(phone)+'&susu_no='+encodeURIComponent(susu)+'&pin='+encodeURIComponent(pin)+'&amount='+encodeURIComponent(amount)+'&purpose='+encodeURIComponent(purpose)+'&callback='+cb;document.body.appendChild(sc);}
+async function enableNotif(){const susu=localStorage.getItem('dt_susu');if(!susu){alert('Login first');return;}const btn=document.getElementById('enableBtn');btn.textContent='⏳ Waiting for Allow...';window.OneSignalDeferred.push(async function(OneSignal){try{await OneSignal.Notifications.requestPermission();await OneSignal.User.PushSubscription.optIn();try{await OneSignal.login(susu);}catch(e){}let id=OneSignal.User.PushSubscription.id;let tries=0;while(!id&&tries<20){await new Promise(r=>setTimeout(r,800));id=OneSignal.User.PushSubscription.id;tries++;}if(!id||!OneSignal.Notifications.permission){alert('❌ Clicked BLOCK? Fix: iPhone Settings > Apps > DANK-TRUST > Notifications > ALLOW, then Clear Safari History');btn.textContent='Enable Notifications 🔔';return;}const cb='os_'+Date.now();window[cb]=function(res){if(res.status=='success'){alert('✅ Enabled! You will get Chairman messages like Bolt! 🔔');setEnabledUI();}delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=saveOnesignal&susu_no='+encodeURIComponent(susu)+'&onesignal_id='+encodeURIComponent(id)+'&callback='+cb;document.body.appendChild(sc);}catch(e){alert('Error: '+e.message);btn.textContent='Enable Notifications 🔔';}});}
 function doLogout(){localStorage.removeItem('dt_loggedIn');closeBoxes();checkAppState();}
 function exitToRegister(){if(confirm('Exit to Register?')){localStorage.removeItem('dt_registered');localStorage.removeItem('dt_loggedIn');checkAppState();}}
 function openBox(id){mainCard.style.display='none';document.getElementById(id).style.display='block';}
