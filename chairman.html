@@ -1,40 +1,44 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Chairman Broadcast</title>
-<style>body{font-family:system-ui;padding:20px;max-width:400px;margin:auto;background:#f6f9ff}input,textarea,select{width:100%;padding:12px;margin:8px 0;border:2px solid #1216c6;border-radius:10px;font-size:13px}button{width:100%;padding:15px;background:#1216c6;color:white;border:none;border-radius:12px;font-weight:800;margin:6px 0;cursor:pointer}.btn-white{background:white;color:#1216c6;border:2px solid #1216c6}h2{color:#1216c6;text-align:center}</style></head><body>
-<h2>Chairman Broadcast 📢</h2>
-<div style="background:white;border:2px solid #1216c6;border-radius:14px;padding:16px">
-<label>Title (Bolt style)</label><input id="b_title" value="DANK-TRUST GROWTH">
-<label>Message to Customers *</label><textarea id="b_msg" rows="4" placeholder="Tomorrow we close at 2pm - Pay early!"></textarea>
-<label>Send To</label><select id="b_target"><option value="ALL">ALL Customers (Broadcast)</option><option value="ONE">ONE Customer (Enter DT No)</option></select>
-<div id="oneBox" style="display:none"><label>Enter Susu No (e.g. DT002)</label><input id="b_susu" placeholder="DT002" style="text-transform:uppercase"></div>
-<button id="btnB" onclick="sendBroadcast()">SEND TO ALL 🔔</button>
-<button class="btn-white" onclick="testDT002()">Test Send to DT002 Only (You)</button>
-<p id="status" style="margin-top:15px;font-size:12px;text-align:center;font-weight:700"></p>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chairman Push Panel - DankTrust</title>
+<style>
+body{font-family:Arial;padding:20px;background:#f5f5f5}
+.box{background:white;padding:20px;border-radius:12px;max-width:400px;margin:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+input,textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #ccc;box-sizing:border-box}
+button{width:100%;padding:14px;background:#000;color:white;border:none;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
+button:disabled{background:#888}
+#status{margin-top:15px;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>📢 DankTrust - Send Push</h2>
+<input id="susu" placeholder="Susu No (e.g. DT001 or ALL)">
+<input id="title" placeholder="Title" value="DankTrust Alert">
+<textarea id="msg" rows="4" placeholder="Type message...">Hello, testing Bolt style!</textarea>
+<button id="btn" onclick="sendPush()">Send Bolt Notification 🚀</button>
+<p id="status"></p>
 </div>
 <script>
-const API="https://script.google.com/macros/s/AKfycbwZLEaiqhO3TGVKpkI123b1_zavb2MOOcUkycI6FP9psHq8-pLNAOcT47maOWEuQ3Q/exec";
-document.getElementById('b_target').addEventListener('change', function(){
-  document.getElementById('oneBox').style.display = this.value==='ONE'? 'block' : 'none';
-  document.getElementById('btnB').textContent = this.value==='ONE'? 'SEND TO ONE 🔔' : 'SEND TO ALL 🔔';
-});
-function testDT002(){
-  b_target.value='ONE'; b_susu.value='DT002'; b_title.value='DANK-TRUST Test'; b_msg.value='✅ Chairman test - Your notification works like Bolt! 🔔';
-  document.getElementById('oneBox').style.display='block';
-  sendBroadcast();
+const API_URL = "https://script.google.com/macros/s/AKfycbwZLEaiqhO3TGVKpkI123b1_zavb2MOOcUkycI6FP9psHq8-pLNAOcT47maOWEuQ3Q/exec";
+
+async function sendPush(){
+  const susu = document.getElementById('susu').value.trim();
+  const title = document.getElementById('title').value.trim();
+  const body = document.getElementById('msg').value.trim();
+  const status = document.getElementById('status');
+  const btn = document.getElementById('btn');
+  if(!susu || !body){ alert('Enter Susu No and Message'); return; }
+  btn.disabled=true; status.innerText="Sending...";
+  try{
+    const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'sendFcm', susuNo: susu, title: title, message: body }) });
+    const data = await res.json();
+    status.innerText = data.success ? "✅ Sent! Delivered to " + data.sentCount + "/" + data.total : "❌ Failed: " + JSON.stringify(data);
+  }catch(e){ status.innerText="❌ Error: " + e.message; }
+  btn.disabled=false;
 }
-function sendBroadcast(){
-  const t=b_title.value,m=b_msg.value,target=b_target.value,susu=b_susu.value.trim().toUpperCase();
-  if(!m){alert('Enter message');return;}
-  if(target==='ONE' &&!susu){alert('Enter DT No like DT002');return;}
-  btnB.disabled=true;btnB.textContent='⏳ Sending...';status.textContent='Fetching IDs from MASTER & Sending via OneSignal...';
-  const cb='bc_'+Date.now();
-  window[cb]=function(res){
-    btnB.disabled=false;btnB.textContent= target==='ONE'? 'SEND TO ONE 🔔' : 'SEND TO ALL 🔔';
-    if(res.status==='success'){ status.innerHTML='✅ Sent to '+res.sent+' customers!<br>Message: '+m; status.style.color='#00a650'; }
-    else { status.innerHTML='❌ Failed: '+(res.error||'Check Google Script'); status.style.color='red'; }
-    delete window[cb];document.getElementById(cb)?.remove();
-  };
-  const sc=document.createElement('script');sc.id=cb;
-  let url=API+'?action=broadcast&title='+encodeURIComponent(t)+'&message='+encodeURIComponent(m)+'&target='+encodeURIComponent(target)+'&susu_no='+encodeURIComponent(susu)+'&callback='+cb;
-  sc.src=url;document.body.appendChild(sc);
-}
-</script></body></html>
+</script>
+</body>
+</html>
