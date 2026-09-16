@@ -10,6 +10,10 @@
 <meta name="apple-mobile-web-app-title" content="DANK-TRUST">
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DANK-TRUST GROWTH</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging-compat.js"></script>
+
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -32,6 +36,19 @@
     if(btn){btn.textContent='✅ Notifications Enabled';btn.className='btn btn-white';btn.disabled=true;btn.style.opacity='1';btn.style.display='block';btn.onclick=null;}
     if(st){st.style.display='block';st.textContent='✅ Notifications Enabled - You will get updates like Bolt!';}
   }
+
+  // FIREBASE INIT - Your keys
+  const firebaseConfig = {
+    apiKey: "AIzaSyC_YP_ZQ6aikiXwhdDTKgqeVKM3WPSnDn4",
+    authDomain: "danktrust-growth.firebaseapp.com",
+    projectId: "danktrust-growth",
+    storageBucket: "danktrust-growth.firebasestorage.app",
+    messagingSenderId: "549971041869",
+    appId: "1:549971041869:web:9391e597e6200f4ef2c684"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const messaging = firebase.messaging();
+  const VAPID_KEY = "BNbq6NRyj4UCzXGIf2LUBF81DxxbiCrMjCFg4MsCPsz7-Gkge6A9yb7w1_mRrwOsInHvwDeEhkYEtUpIQh0I3bs";
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}body{background:white;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:14px}
@@ -54,7 +71,6 @@ label{font-size:11px;font-weight:700;color:#1216c6;text-align:left;display:block
 </head>
 <body>
 <div id="registerFirstScreen" style="display:flex"><div style="flex:0"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1><div style="color:#7fa0d6;font-size:12px">Growth Circle - Secure Susu</div></div><div id="regStep1" style="margin:20px 0 10px;flex:1;display:flex;flex-direction:column;justify-content:center"><button class="btn btn-blue" onclick="showRegisterForm()">REGISTER</button></div><div id="regStep2" style="display:none;margin:10px 0;text-align:left;overflow-y:auto;flex:1">
-
 <div class="desc-box">
 <b style="font-size:12.5px;color:#1216c6">💰 CHOOSE YOUR WEEKLY SAVINGS (GH¢50 - GH¢200)</b><br><br>
 Select how much you want to save per week. You pay a <b>one-time registration fee</b> based on your target + <b>GH¢2 welfare/aid per deposit</b>:<br><br>
@@ -64,7 +80,6 @@ Select how much you want to save per week. You pay a <b>one-time registration fe
 • <b>GH¢200/week</b> → Registration <b>GH¢50 + GH¢2 = GH¢52</b> one-time<br><br>
 <span style="color:#333">After registration, you only focus on your daily savings. Admin will assist you!</span>
 </div>
-
 <div class="daily-box">
 <b style="font-size:12.5px;color:#00a650">✨ DAILY CONTRIBUTION - HOW IT WORKS</b><br><br>
 To meet your weekly target, you can contribute small-small daily (Monday to Friday):<br><br>
@@ -74,7 +89,6 @@ To meet your weekly target, you can contribute small-small daily (Monday to Frid
 • Want <b>GH¢200/week?</b> → Pay <b>GH¢40 daily</b> (GH¢40 x 5 = GH¢200)<br><br>
 <span style="color:#0a5a2e">💡 <b>Admin will assist in depositing</b> for each customer who is ready. Collector will come daily or you can send MoMo. Plus <b>GH¢2 welfare/aid per deposit</b> to support the group. Secure & Trusted!</span>
 </div>
-
 <label>FULL NAME *</label><input id="n_name"><label>PHONE *</label><input id="n_phone" type="tel"><label>EMAIL *</label><input id="n_email" type="email"><label>DOB *</label><input id="n_dob" type="date"><label>GENDER *</label><select id="n_gender"><option value="">Select</option><option>Male</option><option>Female</option></select><label>OCCUPATION *</label><input id="n_occ"><label>WEEKLY *</label><select id="n_weekly" onchange="showFee(this.value)"><option value="">Select your weekly target (50-200)</option><option value="50">GH₵ 50 weekly → GH₵10 daily + GH¢22 reg</option><option value="100">GH₵ 100 weekly → GH₵20 daily + GH¢32 reg</option><option value="150">GH₵ 150 weekly → GH₵30 daily + GH¢42 reg</option><option value="200">GH₵ 200 weekly → GH₵40 daily + GH¢52 reg</option></select><div id="feeShow" class="fee-box"></div><label>NEXT OF KIN *</label><input id="n_kin"><label>LOCATION *</label><input id="n_loc"><label>HEARD FROM *</label><select id="n_hear"><option value="">Select</option><option>FAMILY</option><option>FRIEND</option><option>SOCIAL MEDIA</option><option>OTHER</option></select><label>REFERRER</label><input id="n_ref"><label style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:10px"><input type="checkbox" id="n_agree" style="width:18px;height:18px"> I AGREE *</label><button class="btn btn-blue" id="btnN" onclick="submitNew()" style="margin-top:14px">REGISTER</button><button class="btn btn-white" onclick="hideRegisterForm()">← Back</button></div><div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 22px 22px"><div><b>🟢 24/7 Secure</b><br>📞 053 591 6951</div><div>🔒</div></div></div>
 <div id="loginFirstScreen"><div class="top-bar" style="margin:-18px -22px 0 -22px;border-radius:22px 22px 0 0;background:#f6f9ff"><div class="top-name">Login Area</div><div class="top-exit" onclick="exitToRegister()">EXIT</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:10px"><div style="text-align:center;margin:14px 0 12px"><span class="welcome-big">WELCOME</span><span class="welcome-small">to</span></div><img src="logo.png" class="logo-big"><h1 style="color:#0f14b8;font-size:18px;font-weight:900;margin-top:-25px">DANK-TRUST GROWTH</h1></div><div id="logStep1" style="margin:20px 0 10px"><button class="btn btn-blue" onclick="showLoginForm()">LOGIN</button></div><div id="logStep2" style="display:none;margin:10px 0;text-align:left"><label>Full Name *</label><input id="loginName"><label>Susu No *</label><input id="loginSusu" style="text-transform:uppercase"><label>PIN *</label><input id="loginPin" type="password"><button class="btn btn-blue" id="btnLogin" onclick="doLogin()">CONFIRM LOGIN</button><button class="btn btn-white" onclick="hideLoginForm()">← Back</button></div><div style="margin:18px -22px 0 -22px;background:#1216c6;color:white;padding:14px 16px;font-size:11px;border-radius:0 0 22px 22px">🟢 24/7 Secure | 053 591 6951</div></div>
 <div class="main" id="mainCard"><div class="top-bar"><div class="top-name" id="welcomeText">Welcome</div><div class="top-logout" onclick="doLogout()">LOGOUT</div></div><div style="padding:18px 22px 0 22px;flex:1;display:flex;flex-direction:column;align-items:center"><img src="logo.png" style="width:130px;height:130px;object-fit:contain;margin:10px auto"><h2 style="color:#1216c6;font-size:14px;margin-bottom:25px">DASHBOARD</h2><div style="width:100%;margin-top:10px"><button class="btn btn-blue" onclick="openBalance()">Check Balance</button><button class="btn btn-white" onclick="openWithdrawalForm()">Withdrawal</button><button class="btn btn-blue" id="enableBtn" onclick="enableNotif()">Enable Notifications 🔔</button><div id="notifStatus" style="display:none;text-align:center;margin-top:8px;font-size:11px;color:#00a650;font-weight:700">✅ Notifications Enabled - You will get updates like Bolt!</div></div></div><div style="background:#1216c6;color:white;padding:14px 16px;display:flex;justify-content:space-between;font-size:11px;border-radius:0 0 20px 20px"><div>🟢 Secure</div><div>📞 053 591 6951</div></div></div>
@@ -111,7 +125,66 @@ balFull.innerHTML=`
 `;}else balFull.innerHTML='❌ Error loading';delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?susu_no='+encodeURIComponent(susu)+'&number='+encodeURIComponent(name)+'&pin='+encodeURIComponent(pin)+'&callback='+cb;document.body.appendChild(sc);}
 function openWithdrawalForm(){w_name.value=localStorage.getItem('dt_name')||'';w_number.value=localStorage.getItem('dt_number')||'';w_susu.value=localStorage.getItem('dt_susu')||'';w_pin.value=localStorage.getItem('dt_pin')||'';openBox('withdrawBox');}
 function submitWithdrawal(){const btn=btnW; const fullname=w_name.value.trim(), phone=w_number.value.trim(), susu=w_susu.value.trim().toUpperCase(), pin=w_pin.value.trim(), amount=w_amount.value.trim(), purpose=w_purpose.value.trim();if(!fullname||!phone||!susu||!pin||!amount||!purpose){alert('Fill all 6 fields *');return;}btn.disabled=true;btn.textContent='Submitting...';const cb='with_'+Date.now();window[cb]=function(res){btn.disabled=false;btn.textContent='Submit Request';if(res.status=='success'){alert('✅ Withdrawal Submitted! GH₵'+amount+' - Will be processed within 24 hours');w_amount.value='';w_purpose.value='';closeBoxes();}else alert('Failed');delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=withdrawal&fullname='+encodeURIComponent(fullname)+'&phone='+encodeURIComponent(phone)+'&susu_no='+encodeURIComponent(susu)+'&pin='+encodeURIComponent(pin)+'&amount='+encodeURIComponent(amount)+'&purpose='+encodeURIComponent(purpose)+'&callback='+cb;document.body.appendChild(sc);}
-async function enableNotif(){const susu=localStorage.getItem('dt_susu');if(!susu){alert('Login first');return;}const btn=document.getElementById('enableBtn');btn.textContent='⏳ Waiting for Allow...';window.OneSignalDeferred.push(async function(OneSignal){try{await OneSignal.Notifications.requestPermission();await OneSignal.User.PushSubscription.optIn();try{await OneSignal.login(susu);}catch(e){}let id=OneSignal.User.PushSubscription.id;let tries=0;while(!id&&tries<20){await new Promise(r=>setTimeout(r,800));id=OneSignal.User.PushSubscription.id;tries++;}if(!id||!OneSignal.Notifications.permission){alert('❌ Clicked BLOCK? Fix: iPhone Settings > Apps > DANK-TRUST > Notifications > ALLOW, then Clear Safari History');btn.textContent='Enable Notifications 🔔';return;}const cb='os_'+Date.now();window[cb]=function(res){if(res.status=='success'){alert('✅ Enabled! You will get Chairman messages like Bolt! 🔔');setEnabledUI();}delete window[cb];document.getElementById(cb)?.remove();};const sc=document.createElement('script');sc.id=cb;sc.src=API+'?action=saveOnesignal&susu_no='+encodeURIComponent(susu)+'&onesignal_id='+encodeURIComponent(id)+'&callback='+cb;document.body.appendChild(sc);}catch(e){alert('Error: '+e.message);btn.textContent='Enable Notifications 🔔';}});}
+
+async function enableNotif(){
+  const susu=localStorage.getItem('dt_susu');
+  if(!susu){alert('Login first');return;}
+  const btn=document.getElementById('enableBtn');
+  btn.textContent='⏳ Waiting for Allow...';
+
+  // 1. Try Firebase First
+  try{
+    const permission = await Notification.requestPermission();
+    if(permission === 'granted'){
+      const token = await messaging.getToken({ vapidKey: VAPID_KEY });
+      if(token){
+        console.log('FCM Token:', token);
+        const cb='fcm_'+Date.now();
+        window[cb]=function(res){console.log('FCM Saved',res); delete window[cb]; document.getElementById(cb)?.remove();};
+        const sc=document.createElement('script'); sc.id=cb;
+        sc.src=API+'?action=saveFcmToken&susu_no='+encodeURIComponent(susu)+'&fcm_token='+encodeURIComponent(token)+'&callback='+cb;
+        document.body.appendChild(sc);
+      }
+    }
+  }catch(e){console.log('FCM error',e);}
+
+  // 2. Then OneSignal
+  window.OneSignalDeferred.push(async function(OneSignal){
+    try{
+      await OneSignal.Notifications.requestPermission();
+      await OneSignal.User.PushSubscription.optIn();
+      try{await OneSignal.login(susu);}catch(e){}
+      let id=OneSignal.User.PushSubscription.id;
+      let tries=0;
+      while(!id&&tries<20){await new Promise(r=>setTimeout(r,800)); id=OneSignal.User.PushSubscription.id; tries++;}
+      if(!id||!OneSignal.Notifications.permission){
+        if(Notification.permission === 'granted'){
+          setEnabledUI();
+          alert('✅ Notifications Enabled with Firebase!');
+          return;
+        }
+        alert('❌ Clicked BLOCK? Fix: iPhone Settings > Apps > DANK-TRUST > Notifications > ALLOW, then Clear Safari History');
+        btn.textContent='Enable Notifications 🔔';
+        return;
+      }
+      const cb='os_'+Date.now();
+      window[cb]=function(res){
+        if(res.status=='success'){
+          alert('✅ Enabled! You will get Chairman messages like Bolt! 🔔');
+          setEnabledUI();
+        }
+        delete window[cb]; document.getElementById(cb)?.remove();
+      };
+      const sc=document.createElement('script'); sc.id=cb;
+      sc.src=API+'?action=saveOnesignal&susu_no='+encodeURIComponent(susu)+'&onesignal_id='+encodeURIComponent(id)+'&callback='+cb;
+      document.body.appendChild(sc);
+    }catch(e){
+      alert('Error: '+e.message);
+      btn.textContent='Enable Notifications 🔔';
+    }
+  });
+}
+
 function doLogout(){localStorage.removeItem('dt_loggedIn');closeBoxes();checkAppState();}
 function exitToRegister(){if(confirm('Exit to Register?')){localStorage.removeItem('dt_registered');localStorage.removeItem('dt_loggedIn');checkAppState();}}
 function openBox(id){mainCard.style.display='none';document.getElementById(id).style.display='block';}
