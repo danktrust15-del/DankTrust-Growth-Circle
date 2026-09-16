@@ -1,43 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chairman Push Panel - DankTrust</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>DankTrust - Chairman Push</title>
 <style>
-body{font-family:Arial;padding:20px;background:#f5f5f5}
-.box{background:white;padding:20px;border-radius:12px;max-width:400px;margin:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
-input,textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #ccc;box-sizing:border-box}
-button{width:100%;padding:14px;background:#000;color:white;border:none;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
-button:disabled{background:#888}
-#status{margin-top:15px;font-weight:bold}
+*{box-sizing:border-box} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background:#0f0f0f;margin:0;padding:15px;color:#fff}
+.card{max-width:420px;margin:20px auto;background:#1c1c1e;border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+h2{text-align:center;margin:0 0 20px;font-size:22px} label{font-size:12px;color:#8e8e93;margin-top:12px;display:block;font-weight:600;letter-spacing:0.5px}
+input,textarea,select{width:100%;padding:14px;margin-top:6px;border-radius:12px;border:1px solid #38383a;background:#2c2c2e;color:white;font-size:16px;outline:none}
+input:focus,textarea:focus{border-color:#0a84ff} button{width:100%;margin-top:20px;padding:16px;background:white;color:black;border:none;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer}
+button:active{transform:scale(0.98)} button:disabled{opacity:0.5}
+#status{margin-top:16px;padding:12px;border-radius:10px;text-align:center;font-weight:600;display:none}
+.ok{background:#30d15833;color:#30d158;border:1px solid #30d15855} .fail{background:#ff453a33;color:#ff453a;border:1px solid #ff453a55}
+#log{margin-top:12px;background:#2c2c2e;padding:12px;border-radius:10px;font-size:11px;white-space:pre-wrap;word-break:break-all;max-height:250px;overflow:auto;display:none;color:#aeaeb2}
+.small{font-size:11px;color:#8e8e93;text-align:center;margin-top:10px}
 </style>
 </head>
 <body>
-<div class="box">
-<h2>📢 DankTrust - Send Push</h2>
-<input id="susu" placeholder="Susu No (e.g. DT001 or ALL)">
-<input id="title" placeholder="Title" value="DankTrust Alert">
-<textarea id="msg" rows="4" placeholder="Type message...">Hello, testing Bolt style!</textarea>
-<button id="btn" onclick="sendPush()">Send Bolt Notification 🚀</button>
-<p id="status"></p>
+<div class="card">
+<h2>🔔 DankTrust Chairman</h2>
+<label>SUSU NUMBER</label>
+<select id="susu" onchange="toggleCustom()"><option value="DT002">DT002 (Test)</option><option value="ALL">ALL CUSTOMERS</option><option value="CUSTOM">Custom...</option></select>
+<input id="customSusu" placeholder="Enter Susu No e.g. DT015" style="display:none;margin-top:10px">
+<label>TITLE</label><input id="title" value="DankTrust Alert">
+<label>MESSAGE</label><textarea id="msg" rows="4">Hello, this is DankTrust - testing Bolt-style push 🔔 Your phone will pop up even when locked!</textarea>
+<button id="btn" onclick="sendPush()">Send Push 🚀</button>
+<div id="status"></div><div id="log"></div>
+<div class="small">FCM V1 + APNs | Version 48 Fix</div>
 </div>
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwZLEaiqhO3TGVKpkI123b1_zavb2MOOcUkycI6FP9psHq8-pLNAOcT47maOWEuQ3Q/exec";
-
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZLEaiqhO3TGVKpkI123b1_zavb2MOOcUkycI6FP9psHq8-pLNAOcT47maOWEuQ3Q/exec";
+function toggleCustom(){ document.getElementById('customSusu').style.display = document.getElementById('susu').value==='CUSTOM' ? 'block' : 'none'; }
 async function sendPush(){
-  const susu = document.getElementById('susu').value.trim();
-  const title = document.getElementById('title').value.trim();
-  const body = document.getElementById('msg').value.trim();
-  const status = document.getElementById('status');
   const btn = document.getElementById('btn');
-  if(!susu || !body){ alert('Enter Susu No and Message'); return; }
-  btn.disabled=true; status.innerText="Sending...";
+  const status = document.getElementById('status');
+  const log = document.getElementById('log');
+  let susuNo = document.getElementById('susu').value;
+  if(susuNo==='CUSTOM') susuNo = document.getElementById('customSusu').value.trim().toUpperCase();
+  const title = document.getElementById('title').value.trim();
+  const message = document.getElementById('msg').value.trim();
+  if(!susuNo){ alert('Enter Susu No'); return; }
+  if(!message){ alert('Enter message'); return; }
+  btn.disabled=true; btn.innerText='Sending... ⏳';
+  status.style.display='block'; status.className=''; status.style.background='#2c2c2e'; status.style.color='#fff';
+  status.innerText=`Sending to ${susuNo}... wait 10s`; log.style.display='none';
   try{
-    const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'sendFcm', susuNo: susu, title: title, message: body }) });
+    const url = `${SCRIPT_URL}?action=sendFcm&susuNo=${encodeURIComponent(susuNo)}&title=${encodeURIComponent(title)}&message=${encodeURIComponent(message)}&_t=${Date.now()}`;
+    const res = await fetch(url, {cache:'no-store'});
     const data = await res.json();
-    status.innerText = data.success ? "✅ Sent! Delivered to " + data.sentCount + "/" + data.total : "❌ Failed: " + JSON.stringify(data);
-  }catch(e){ status.innerText="❌ Error: " + e.message; }
-  btn.disabled=false;
+    log.style.display='block'; log.innerText = JSON.stringify(data, null, 2);
+    if(data.sentCount>0){
+      status.className='ok'; status.innerText=`✅ SUCCESS! Delivered ${data.sentCount}/${data.total} to ${susuNo}. Check iPhone now (lock screen)!`;
+      if(navigator.vibrate) navigator.vibrate([200,100,200]);
+    } else {
+      status.className='fail';
+      let reason = 'Unknown';
+      if(data.details && data.details[0]){
+        const d = data.details[0];
+        if(d.error) reason = d.error;
+        else if(d.response) { try{ const r = JSON.parse(d.response); reason = r.error?.message || d.response.substring(0,200); } catch{ reason = d.response.substring(0,200); } }
+        else reason = `HTTP ${d.code}`;
+      }
+      status.innerText=`❌ Failed ${data.sentCount}/${data.total} - Reason: ${reason}. Check log below.`;
+      if(reason.includes('invalid_grant') || reason.includes('no_access_token')) status.innerText += ' → Private key still invalid, regenerate key.';
+      if(reason.includes('notFound') || reason.includes('Requested entity was not found')) status.innerText += ' → Token for '+susuNo+' expired. Ask customer to logout/login in app.';
+      if(data.total===0) status.innerText = `❌ No token found for ${susuNo}. Customer never logged in or FCMTokens sheet empty.`;
+    }
+  }catch(e){
+    status.className='fail'; status.innerText='❌ Network Error: '+e.message;
+    log.style.display='block'; log.innerText = e.toString();
+  } finally { btn.disabled=false; btn.innerText='Send Push 🚀'; }
 }
 </script>
 </body>
